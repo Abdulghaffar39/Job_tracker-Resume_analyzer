@@ -4,9 +4,9 @@
 <head>
 
     <link rel="icon" type="image/png" sizes="HeightxWidth" href="../Assets/Images/main logo.png">
-    
+
     <title>Home | Hiring Mine</title>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/utility.css">
@@ -15,47 +15,71 @@
 
 <body>
 
-    <header class="flex">
+    <header class="flex justify-around items-center gap-[125px] h-[12vh] lg:gap-[0px]">
 
-        <div class="container_1">
-            <img src="../Assets/Images/logo.png" alt="">
+        <div class="container_1 w-[184px] md:w-[250px]">
+            <img src="../Assets/Images/logo.png" width="100%" alt="">
         </div>
 
         <div class="container_2">
 
-            <ul>
+            <ul class="flex items-center gap-[20px] text-[16px]">
+
                 <li><a href="#">About Us</a></li>
                 <li><a href="#">People</a></li>
                 <li><a href="#">Resume Checker</a></li>
                 <li><a href="#">Video Resume</a></li>
                 <li><a href="#">Jobs</a></li>
-                <li><a href="#">Employee / Post Job</a></li>
+                <li><a href="#" class="color-dark-blue font-normal">Employee / Post Job</a></li>
+
             </ul>
 
         </div>
 
-        <div class="container_3">
+        <div class="container_3 flex items-center gap-[15px] md:w-[30%] md:h-[100%] md:justify-center md:gap-[30px]">
 
-            <div class="parent_1">
+            <div class="parent_1 bg-gray-400 w-[48px] h-[2.5vh] rounded-3xl flex items-center md:h-[25px] md:w-[60px]" onclick="dark_mode()"
+                id="dark_mode">
 
-                <div class="child_1"></div>
+                <div class="child_1 w-[32px] h-[32px] rounded-3xl bg-black flex justify-center items-center md:w-[42px] md:h-[42px]">
 
-            </div>
+                    <i class="fa-solid fa-sun text-[15px] color-white md:text-[20px]"></i>
 
-            <div class="parent_2">
-
-                <div class="child_1">
-                    <img src="../Assets/Images/empy person.jpg" alt="Profile Img">
                 </div>
 
-                
+            </div>
+
+            <div class="parent_2 hidden bg-gray-400 w-[48px] h-[20px] rounded-3xl flex items-center justify-end md:h-[25px] md:w-[60px]"
+                onclick="light_mode()" id="light_mode">
+
+                <div class="child_1 w-[32px] h-[32px] rounded-3xl bg-blue flex justify-center items-center md:w-[42px] md:h-[42px]">
+
+                    <i class="fa-solid fa-moon color-white text-[20px]"></i>
+
+                </div>
 
             </div>
 
+            <div class="parent_3">
+
+                <div class="child_1 flex items-center gap-[10px]">
+
+                    <img src="../Assets/Images/empy person.jpg" class="w-10 rounded-3xl md:w-[50px]" alt="Profile Img">
+                    <i class="fa-solid fa-arrow-down text-[15px] color-blue font-extrabold md:text-[30px]"></i>
+
+                </div>
+
+            </div>
+
+            <div class="parent_4 hidden">
+                <i class="fa-solid fa-list text-[20px] md:text-[30px]"></i>
+            </div>
         </div>
 
     </header>
 
+    <script src="app.js"></script>
+    <script src="https://kit.fontawesome.com/1de706ad7b.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
