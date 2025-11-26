@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Login</title>
 
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/utility.css">
@@ -13,6 +13,7 @@
 
 <body>
 
+
     <header>
 
         <div class="parnet_1">
@@ -20,9 +21,9 @@
             <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
         </div>
 
-        <div class="parnet_2" onclick="goLogin(event)">
+        <div class="parnet_2" onclick="goSignUP(event)">
 
-            <button>Log In</button>
+            <button>Sign Up</button>
 
         </div>
 
@@ -30,14 +31,11 @@
 
     <div class="container_1">
 
-        <form onsubmit="signUp(event)">
+        <form onsubmit="login(event)">
 
-            <h1>Sign Up</h1>
+            <h1>Sign In</h1>
 
             <div class="parent_1">
-
-                <label for="fname">Full Name</label>
-                <input type="text" name="fname" id="fullName" placeholder="Enter your Name">
 
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" placeholder="Enter your Email">
@@ -48,13 +46,14 @@
 
             </div>
 
-            <input type="submit" class="signUp" value="Sign Up">
+            <input type="submit" class="signUp" value="Login">
 
         </form>
 
     </div>
 
     <script src="app.js"></script>
+
 </body>
 
 </html>

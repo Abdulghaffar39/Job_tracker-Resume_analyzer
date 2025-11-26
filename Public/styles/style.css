@@ -1,0 +1,211 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+body {
+
+    font-size: 62.4%;
+    background-color: rgb(233, 227, 227);
+    color: var(--color-white);
+}
+
+/* ------------------------------------ index SignUp started --------------------------- */
+
+/* ------------ header SignUp started ------------ */
+
+header {
+
+    width: 100%;
+    height: 120px;
+    background-color: rgb(195, 191, 115);
+    padding: 0px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .parnet_1 img {
+
+    height: 120px;
+}
+
+header .parnet_2 {
+
+    width: 140px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+header .parnet_2 button {
+
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: gainsboro;
+    border-radius: 10px;
+    background-color: black;
+}
+
+header .parnet_2 button:hover {
+
+    color: black;
+    font-size: 19px;
+    transition: 0.8s all;
+    border: 2px solid black;
+    background-color: transparent;
+}
+
+/* ------------ header SignUp ended ------------ */
+
+.container_1 {
+
+    width: 100%;
+    height: 84vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_1 form {
+
+    width: 60%;
+    height: 90%;
+    margin: 0px auto;
+    padding: 20px 20px;
+    border-radius: 20px;
+    background-color: rgb(195, 191, 115);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 40px;
+}
+
+.container_1 form h1 {
+
+    font-size: 50px;
+    font-weight: 800;
+    color: rgb(70, 67, 3);
+    text-shadow: 1px 1px 1px black;
+}
+
+.container_1 form .parent_1 {
+
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.container_1 form .parent_1 label {
+
+    font-size: 22px;
+    font-weight: 700;
+    color: rgb(70, 67, 3);
+}
+
+.container_1 form .parent_1 input {
+
+    height: 50px;
+    outline: none;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 0px 10px;
+    margin-bottom: 25px;
+    color: var(--color-white);
+    border-radius: 0px 8px 8px 8px;
+    background-color: var(--bg-black);
+}
+
+.container_1 form .parent_1 input:hover {
+
+    background-color: rgb(13, 13, 13);
+}
+
+.container_1 form .signUp {
+
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    background-color: rgb(60, 55, 6);
+    border: 1px solid rgb(12, 11, 0);
+}
+
+.container_1 form .signUp:hover {
+
+    font-weight: 700;
+    font-size: 18;
+    transition: 0.8s all;
+    color: rgb(60, 55, 6);
+    background-color: transparent;
+    border: 1px solid rgb(12, 11, 0);
+}
+
+
+/* --------------------------------- index SignUp ended ------------------------- */
+
+@media (max-width: 768px) {
+
+    /* ---------------------------------- index SignUp ended ------------------------- */
+
+    .container_1 form {
+
+        width: 80%;
+        gap: 20px;
+    }
+
+    /* ---------------------------------- index SignUp ended ------------------------- */
+
+}
+
+@media (max-width: 425px) {
+
+    /* ---------------------------------- index SignUp started ------------------------- */
+
+    /* ---------------------------------- header SignUp started ------------------------- */
+
+    header {
+
+        padding: 0px;
+        justify-content: space-around;
+    }
+
+
+    header .parnet_2 {
+
+        width: 80px;
+        height: 40px;
+    }
+
+    header .parnet_2 button {
+
+        font-size: 14px;
+    }
+
+    /* ---------------------------------- header SignUp started ------------------------- */
+
+    .container_1 form {
+
+        width: 96%;
+    }
+
+    .container_1 form .parent_1 {
+
+        width: 100%;
+    }
+
+    /* ---------------------------------- index SignUp ended ------------------------- */
+
+}
