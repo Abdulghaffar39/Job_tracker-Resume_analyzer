@@ -1,4 +1,5 @@
 const userValue = require("../db/userSchema");
+const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -7,7 +8,6 @@ async function signUp(req, res) {
     try {
 
         const { fullName, email, password } = req.body;
-
         const findEmail = await userValue.findOne({ email })
 
         if (findEmail) {
@@ -75,12 +75,29 @@ async function login(req, res) {
 
             if (result) {
 
+                let token = jwt.sign(
+
+                    {
+                        "Name": user.fullName,
+                        email: user.email,
+                        password: user.password
+                    },
+                    process.env.JWTSECRETKEY,
+                    { expiresIn: "1d" }
+
+                )
+
+                console.log(token);
+
+
                 return res.send({
 
+                    token,
                     result,
                     status: 200,
                     message: `🎉 Thank you, ${user.fullName}! Your details have been verify successfully.`,
                 });
+
             }
             else {
 
