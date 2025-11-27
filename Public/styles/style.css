@@ -159,7 +159,7 @@ header .parnet_2 button:hover {
 
 /* --------------------------------- home started ------------------------- */
 
-main{
+.home {
 
     width: 100%;
     height: 84.5vh;
@@ -169,23 +169,110 @@ main{
     align-items: center;
 }
 
-main .container_1,
-main .container_2{
+.home .container_1 {
 
     width: 40%;
     height: 80%;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: #c3bf73;
+    box-shadow: 5px 5px 10px rgb(136, 135, 135);
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.home .container_1 .parent_1 {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+    gap: 10px;
+}
+
+.home .container_1 .parent_1 h1 {
+
+    font-size: 60px;
+    color: rgb(47, 45, 45);
+}
+
+.home .container_1 .parent_1 p {
+
+    font-size: 20px;
+    color: rgb(54, 54, 54)
+}
+
+.home .container_1 .parent_2 {
+
+    border-radius: 10px;
+}
+
+.home .container_1 .parent_2 button {
+
+    width: 150px;
+    height: 60px;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: transparent;
+}
+
+.home .container_1 .parent_2 button:hover {
+
+    font-size: 24px;
+    color: #c3bf73;
+    transition: 0.8s all;
+    border-style: none;
+    background-color: black;
 }
 
 
 /* --------------------------------- home ended ------------------------- */
 
+@media (max-width: 1230px) {
+
+    /* ---------------------------------- home started ------------------------- */
+
+    .home .container_1 {
+
+        padding: 30px;
+    }
+
+    .home .container_1 .parent_1 h1 {
+
+        font-size: 60px;
+    }
+
+    /* ---------------------------------- home ended ------------------------- */
+
+}
+
+@media (max-width: 1024px) {
+
+    /* ---------------------------------- home started ------------------------- */
+
+    .home .container_1 {
+
+        padding: 30px;
+    }
+
+    .home .container_1 .parent_1 h1 {
+
+        font-size: 45px;
+    }
+
+    /* ---------------------------------- home ended ------------------------- */
+
+}
+
 @media (max-width: 768px) {
 
-    /* ---------------------------------- index SignUp ended ------------------------- */
+    /* ---------------------------------- index SignUp started ------------------------- */
 
     .container_1 form {
 
@@ -194,6 +281,38 @@ main .container_2{
     }
 
     /* ---------------------------------- index SignUp ended ------------------------- */
+
+
+    /* ---------------------------------- home started ------------------------- */
+
+    .home {
+
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .home .container_1 {
+
+        padding: 20px;
+        width: 90%;
+        gap: 20px;
+    }
+
+    .home .container_1 .parent_1 {
+
+        gap: 10px;
+    }
+
+    .home .container_1 .parent_1 h1 {
+
+        font-size: 40px;
+        font-weight: 800;
+    }
+
+    /* ---------------------------------- home ended ------------------------- */
 
 }
 
@@ -234,5 +353,42 @@ main .container_2{
     }
 
     /* ---------------------------------- index SignUp ended ------------------------- */
+
+
+
+
+    /* ---------------------------------- home started ------------------------- */
+
+    .home {
+
+        padding: 20px 0px;
+        gap: 20px;
+    }
+
+    .home .container_1 {
+
+        padding: 15px;;
+        width: 95%;
+        gap: 10px;
+    }
+
+    .home .container_1 .parent_1 h1 {
+
+        font-size: 30px;
+    }
+
+    .home .container_1 .parent_1 p {
+
+        font-size: 16px;
+    }
+
+    .home .container_1 .parent_2 button {
+
+        width: 100px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    /* ---------------------------------- home ended ------------------------- */
 
 }
