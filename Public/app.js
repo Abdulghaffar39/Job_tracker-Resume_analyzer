@@ -1,4 +1,4 @@
-function signUp(e) {
+async function signUp(e) {
 
     try {
         e.preventDefault();
@@ -10,15 +10,34 @@ function signUp(e) {
         if (fullName === "" || email === "" || password === "") {
 
             alert("⚠️ Please fill in all fields before submitting!")
+            return;
 
         } else if (email.indexOf("@gmail.com") === -1) {
 
-            alert("Please enter a valid email address!")
+            alert("Please enter a valid email address!");
+            return;
 
-        } else {
+        }
 
-            alert(`🎉 Thank you, ${fullName}! Your details have been submitted successfully.`)
-            window.location.href = "login.html"
+        const res = await axios.post("http://localhost:3000/api/signUp",
+
+            { fullName, email, password }
+        )
+
+        const data = res.data;
+        console.log(res);
+
+        if (data.status === 505) {
+
+            alert(data.message);
+            return;
+        }
+
+
+        if (data.status === 200) {
+
+            alert(data.message);
+            window.location.href = "login.html";
         }
 
     }
@@ -32,7 +51,7 @@ function signUp(e) {
 
 }
 
-function login(e) {
+async function login(e) {
 
     try {
         e.preventDefault();
@@ -42,16 +61,45 @@ function login(e) {
 
         if (email === "" || password === "") {
 
-            alert("⚠️ Please fill in all fields before submitting!")
+            alert("⚠️ Please fill in all fields before submitting!");
+            return;
 
         } else if (email.indexOf("@gmail.com") === -1) {
 
-            alert("Please enter a valid email address!")
-        } else {
+            alert("Please enter a valid email address!");
+            return;
 
-            alert(`🎉 Thank you, Login! Your details have been submitted successfully.`)
-            window.location.href = "home.html"
         }
+
+
+        const res = await axios.post("http://localhost:3000/api/login",
+
+            { email, password }
+
+        )
+
+        let data = res.data;
+        console.log(data);
+        
+        if(data.status === 404){
+
+            alert(data.message);
+            return;
+        }
+        
+        if(data.status === 401){
+
+            alert(data.message);
+            return;
+        }
+        
+        if(data.status === 200){
+
+            alert(data.message);
+            window.location.href = "home.html";
+            return;
+        }
+
 
     }
     catch (err) {
