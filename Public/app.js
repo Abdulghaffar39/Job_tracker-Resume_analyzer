@@ -129,4 +129,12 @@ function goSignUP(e) {
 
 }
 
+function logout(e) {
+
+    e.preventDefault();
+
+    window.location.href = "login.html"
+
+}
+
 
