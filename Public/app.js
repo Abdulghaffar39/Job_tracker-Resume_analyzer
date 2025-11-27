@@ -112,6 +112,31 @@ async function login(e) {
 
 }
 
+async function home(e) {
+
+    try {
+        e.preventDefault();
+
+        const res = await axios.post("http://localhost:3000/api/login",
+
+            { withCredentials: true }
+
+        )
+
+        let data = res.data;
+        console.log(data);
+
+    }
+    catch (err) {
+
+        console.log(err);
+        alert("Not working")
+
+    }
+
+
+}
+
 
 function goLogin(e) {
 
@@ -135,6 +160,28 @@ function logout(e) {
 
     window.location.href = "login.html"
 
+}
+
+function postJob(e) {
+
+    e.preventDefault();
+
+    window.location.href = "postJob.html"
+
+}
+
+function findJob(e) {
+
+    e.preventDefault();
+
+    window.location.href = "findJon.html"
+}
+
+function backPost(e) {
+
+    e.preventDefault();
+
+    window.location.href = "home.html"
 }
 
 

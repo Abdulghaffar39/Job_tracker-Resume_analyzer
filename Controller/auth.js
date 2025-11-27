@@ -85,7 +85,13 @@ async function login(req, res) {
                     process.env.JWTSECRETKEY,
                     { expiresIn: "1d" }
 
-                )
+                );
+
+                res.cookie("jwtToken", token, {
+                    httpOnly: true,
+                    maxAge: 24 * 60 * 60 * 1000, // 1 day
+                    sameSite: "Lax"
+                });
 
                 console.log(token);
 
@@ -127,4 +133,31 @@ async function login(req, res) {
 }
 
 
-module.exports = { signUp, login }
+async function home(req, res) {
+
+    const { user } = req;
+    console.log(user, "this is line 139");
+
+    try {
+
+        return res.send({
+
+            status: 200,
+            message: `Welcome ${user.fullName}`,
+        })
+
+    }
+    catch (err) {
+
+        console.log("SIGNUP ERROR:", err);
+
+        return res.send({
+
+            status: 500,
+            message: "Sorry! Server is not responding"
+        })
+    }
+}
+
+
+module.exports = { signUp, login, home }
