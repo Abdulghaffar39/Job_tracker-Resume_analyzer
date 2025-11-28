@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 body {
@@ -246,7 +246,7 @@ header .parnet_2 button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 50px;
+    gap: 40px;
 }
 
 .postJob .parent_1 {
@@ -280,7 +280,9 @@ header .parnet_2 button:hover {
     font-size: 20px;
 }
 
-.postJob .parent_2 label #hash {
+.postJob .parent_2 label span,
+.postJob .parent_3 .child_1 label span,
+.postJob .parent_3 .child_2 label span {
 
     font-size: 18px;
     color: rgb(92, 7, 7);
@@ -290,14 +292,80 @@ header .parnet_2 button:hover {
 .postJob .parent_3 div input,
 .postJob .parent_4 input {
 
+    width: 100%;
     height: 50px;
+    outline: none;
+    font-size: 24px;
+    padding: 0px 10px;
     border-radius: 10px;
+    border: 1px solid black;
+    background-color: transparent;
+    box-shadow: 5px 5px 10px rgb(186, 184, 184);
+}
+
+.postJob .parent_2 input:hover,
+.postJob .parent_3 div input:hover,
+.postJob .parent_4 input:hover {
+
+    background-color: rgb(223, 221, 221);
 }
 
 .postJob .parent_2 label #hash {
 
     font-size: 18px;
     color: rgb(92, 7, 7);
+}
+
+.postJob .parent_3 {
+
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.postJob .parent_3 div {
+
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.postJob .parent_4 {
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.postJob .parent_4 p {
+
+    font-size: 16px;
+    color: rgb(61, 60, 60);
+}
+
+.postJob .parent_5 {
+
+    display: flex;
+    justify-content: end;
+}
+
+.postJob .parent_5 button {
+
+    width: 140px;
+    height: 45px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border-style: none;
+    border-radius: 8px;
+    background-color: #004fcb;
+}
+
+.postJob .parent_5 button:hover {
+
+    transition: 0.4s all;
+    background-color: black;
 }
 
 /* --------------------------------- post Job ended ------------------------- */
