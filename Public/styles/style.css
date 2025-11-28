@@ -234,6 +234,74 @@ header .parnet_2 button:hover {
 
 /* --------------------------------- home ended ------------------------- */
 
+/* --------------------------------- post Job started ------------------------- */
+
+.postJob {
+
+    width: 70%;
+    height: 100%;
+    color: black;
+    margin: 30px auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.postJob .parent_1 {
+
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.postJob .parent_1 h1 {
+
+    font-size: 60px;
+}
+
+.postJob .parent_1 a {
+
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.postJob .parent_2 {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.postJob .parent_2 label,
+.postJob .parent_3 div label,
+.postJob .parent_4 label {
+
+    font-size: 20px;
+}
+
+.postJob .parent_2 label #hash {
+
+    font-size: 18px;
+    color: rgb(92, 7, 7);
+}
+
+.postJob .parent_2 input,
+.postJob .parent_3 div input,
+.postJob .parent_4 input {
+
+    height: 50px;
+    border-radius: 10px;
+}
+
+.postJob .parent_2 label #hash {
+
+    font-size: 18px;
+    color: rgb(92, 7, 7);
+}
+
+/* --------------------------------- post Job ended ------------------------- */
+
 @media (max-width: 1230px) {
 
     /* ---------------------------------- home started ------------------------- */
@@ -367,7 +435,8 @@ header .parnet_2 button:hover {
 
     .home .container_1 {
 
-        padding: 15px;;
+        padding: 15px;
+        ;
         width: 95%;
         gap: 10px;
     }
