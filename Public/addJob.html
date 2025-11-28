@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/utility.css">
+
+</head>
+
+<body>
+
+
+    <header>
+
+        <div class="parnet_1">
+
+            <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
+        </div>
+
+        <div class="parnet_2" onclick="addJob(event)">
+
+            <button>Back</button>
+
+        </div>
+
+    </header>
+
+
+    <main class="addJob"> 
+
+        <div class="container_1">
+
+            <h1>Add job basics</h1>
+
+        </div>
+
+        <div class="container_2">
+
+            <label for="tilte">Job Title <span>*</span> </label>
+            <input type="text" id="tilte">
+
+        </div>
+
+        <hr style="width: 100%;" >
+
+        <div class="container_3">
+
+            <label for="fname">Job location type <span>*</span> </label>
+            <select name="" id="">
+
+                <option value="">In Person</option>
+                <option value="">Fully remote: no on-site work required</option>
+                <option value="">On the road</option>
+
+            </select>
+
+        </div>
+
+    </main>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>

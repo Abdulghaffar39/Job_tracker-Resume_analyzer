@@ -242,6 +242,11 @@ header .parnet_2 button:hover {
     height: 100%;
     color: black;
     margin: 30px auto;
+}
+
+.postJob form {
+
+    width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -370,6 +375,85 @@ header .parnet_2 button:hover {
 
 /* --------------------------------- post Job ended ------------------------- */
 
+
+/* --------------------------------- Add Job started ------------------------- */
+
+.addJob {
+
+    width: 70%;
+    height: 80vh;
+    color: black;
+    margin: 20px auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 30px;
+}
+
+.addJob .container_1 {
+
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.addJob .container_1 {
+
+    font-size: 25px;
+    margin-bottom: 40px;
+}
+
+
+.addJob .container_2,
+.addJob .container_3 {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.addJob .container_2 label,
+.addJob .container_3 label {
+
+    font-size: 20px;
+}
+
+.addJob .container_2 label span,
+.addJob .container_3 label span {
+
+    font-size: 18px;
+    color: rgb(92, 7, 7);
+}
+
+.addJob .container_2 input,
+.addJob .container_3 select {
+
+    width: 100%;
+    height: 50px;
+    outline: none;
+    font-size: 24px;
+    padding: 0px 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: transparent;
+    box-shadow: 5px 5px 10px rgb(186, 184, 184);
+}
+
+.addJob .container_2 input:hover,
+.addJob .container_3 input:hover {
+
+    background-color: rgb(223, 221, 221);
+}
+
+
+/* --------------------------------- Add Job ended ------------------------- */
+
 @media (max-width: 1230px) {
 
     /* ---------------------------------- home started ------------------------- */
@@ -450,6 +534,15 @@ header .parnet_2 button:hover {
 
     /* ---------------------------------- home ended ------------------------- */
 
+    /* ---------------------------------- PostJob started ------------------------- */
+
+    .postJob {
+
+        width: 90%;
+    }
+
+    /* ---------------------------------- PostJob ended ------------------------- */
+
 }
 
 @media (max-width: 425px) {
@@ -524,6 +617,32 @@ header .parnet_2 button:hover {
         width: 100px;
         height: 40px;
         font-size: 16px;
+    }
+
+    /* ---------------------------------- home ended ------------------------- */
+
+    /* ---------------------------------- postJob started ------------------------- */
+
+    .postJob {
+
+        width: 95%;
+    }
+
+    .postJob form .parent_1 h1 {
+
+        font-size: 40px;
+    }
+
+    .postJob form .parent_3 {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .postJob form .parent_3 .child_1,
+    .postJob form .parent_3 .child_2 {
+
+        width: 100%;
     }
 
     /* ---------------------------------- home ended ------------------------- */

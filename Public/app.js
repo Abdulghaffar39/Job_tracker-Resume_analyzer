@@ -80,20 +80,20 @@ async function login(e) {
 
         let data = res.data;
         console.log(data);
-        
-        if(data.status === 404){
+
+        if (data.status === 404) {
 
             alert(data.message);
             return;
         }
-        
-        if(data.status === 401){
+
+        if (data.status === 401) {
 
             alert(data.message);
             return;
         }
-        
-        if(data.status === 200){
+
+        if (data.status === 200) {
 
             alert(data.message);
             window.location.href = "home.html";
@@ -125,6 +125,53 @@ async function home(e) {
 
         let data = res.data;
         console.log(data);
+
+    }
+    catch (err) {
+
+        console.log(err);
+        alert("Not working")
+
+    }
+
+
+}
+
+async function conti(e) {
+
+
+    try {
+        e.preventDefault();
+
+
+        let company = document.getElementById("company").value;
+        let fName = document.getElementById("fName").value;
+        let lName = document.getElementById("lName").value;
+        let number = document.getElementById("number").value;
+
+        if (company === '' || fName === '' || lName === '' || number === '') {
+
+
+            alert("⚠️ Please fill in all fields before submitting!");
+            return;
+
+        }
+
+
+        if (company.length <= 4 || fName.length <= 4 || lName.length <= 4) {
+
+            alert("The value provided is incomplete. Please correct it. at least 4 word!");
+            return;
+        }
+
+        if (number.length <= 7 || number.length > 15) {
+
+            alert("Please enter a valid phone number to continue.");
+            return;
+        }
+
+        window.location.href = "addJob.html";
+
 
     }
     catch (err) {
@@ -182,6 +229,13 @@ function backPost(e) {
     e.preventDefault();
 
     window.location.href = "home.html"
+}
+
+function addJob(e) {
+
+    e.preventDefault();
+
+    window.location.href = "postJob.html"
 }
 
 

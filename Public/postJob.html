@@ -33,55 +33,60 @@
 
     <main class="postJob">
 
-        <div class="parent_1">
-
-            <h1>Create an employer account</h1>
-            <a href="findJob.html">I'm looking for a job
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-
-        </div>
-
-        <div class="parent_2">
+        <form>
 
 
-            <label for="company">Company name <span>*</span> </label>
-            <input type="text">
+            <div class="parent_1">
 
+                <h1>Create an employer account</h1>
+                <a href="findJob.html">I'm looking for a job
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
 
-        </div>
-
-        <div class="parent_3">
-
-
-            <div class="child_1">
-                <label for="fname">First name <span>*</span> </label>
-                <input type="text">
             </div>
 
-            <div class="child_2">
-                <label for="lname">Last name <span>*</span> </label>
-                <input type="text">
+            <div class="parent_2">
+
+
+                <label for="company">Company name <span>*</span> </label>
+                <input type="text" id="company">
+
+
             </div>
 
+            <div class="parent_3">
 
-        </div>
 
-        <div class="parent_4">
+                <div class="child_1">
+                    <label for="fname">First name <span>*</span> </label>
+                    <input type="text" id="fName">
+                </div>
 
-            <label for="num">Phone number</label>
-            <p>For account management communication. Not visible to job seekers.</p>
-            <input type="number">
+                <div class="child_2">
+                    <label for="lname">Last name <span>*</span> </label>
+                    <input type="text" id="lName">
+                </div>
 
-        </div>
 
-        <div class="parent_5">
+            </div>
 
-            <button>Continue
-                <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <div class="parent_4">
 
-        </div>
+                <label for="num">Phone number</label>
+                <p>For account management communication. Not visible to job seekers.</p>
+                <input type="number" id="number" minlength="7">
+
+            </div>
+
+            <div class="parent_5" onclick="conti(event)">
+
+                <button>Continue
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </form>
 
 
     </main>
