@@ -267,6 +267,28 @@ minus.addEventListener("click", () => {
 // ----------------------------- AddJon ended ----------------------------
 
 
+// ----------------------------- Find Job started ----------------------------
+
+async function jonFinder() {
+
+    try {
+
+        let head = document.getElementById("findJob_head");
+        let paraOne = document.getElementById("findJob_paraOne");
+        let paraTwo = document.getElementById("findJob_paraTwo");
+
+
+        const res = await axios.post("http://localhost:3000/api/jobs")
+
+    }
+    catch (err) {
+
+    }
+}
+
+// ----------------------------- Find Job ended ----------------------------
+
+
 
 function goLogin(e) {
 
@@ -304,7 +326,7 @@ function findJob(e) {
 
     e.preventDefault();
 
-    window.location.href = "findJon.html"
+    window.location.href = "findJob.html"
 }
 
 function backPost(e) {

@@ -4,15 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find a Job</title>
+    <title>Home</title>
 
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/utility.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 
 </head>
 
-<body>
+<body onload="jonFinder()">
 
+
+    <header>
+
+        <div class="parnet_1">
+
+            <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
+        </div>
+
+        <div class="parnet_2" onclick="backPost(event)">
+
+            <button>Back</button>
+
+        </div>
+
+    </header>
+
+
+    <main class="findJob">
+
+        <div class="container_1">
+
+            <div class="parent_1">
+
+                <div class="child_1">
+                    <h1 id="findJob_head">Front End Developer</h1>
+                </div>
+
+                <div class="child_2">
+                    <p id="findJob_paraOne">sevto technologyise</p>
+                    <p id="findJob_paraTwo">karachi</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="https://kit.fontawesome.com/1de706ad7b.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
