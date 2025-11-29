@@ -381,15 +381,21 @@ header .parnet_2 button:hover {
 .addJob {
 
     width: 70%;
-    height: 80vh;
+    height: 100%;
     color: black;
     margin: 20px auto;
+    padding: 60px 0px;
 
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: start;
     gap: 30px;
+}
+
+.addJob div {
+
+    gap: 2px;
 }
 
 .addJob .container_1 {
@@ -405,12 +411,18 @@ header .parnet_2 button:hover {
 .addJob .container_1 {
 
     font-size: 25px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
+.addJob .container_4,
+.addJob .container_5 {
+
+    font-size: 25px;
+}
 
 .addJob .container_2,
-.addJob .container_3 {
+.addJob .container_3,
+.addJob .container_4 {
 
     width: 100%;
     display: flex;
@@ -419,25 +431,30 @@ header .parnet_2 button:hover {
 
 
 .addJob .container_2 label,
-.addJob .container_3 label {
+.addJob .container_3 label,
+.addJob .container_4 label,
+.addJob .container_5 label {
 
     font-size: 20px;
 }
 
 .addJob .container_2 label span,
-.addJob .container_3 label span {
+.addJob .container_3 label span,
+.addJob .container_4 label span,
+.addJob .container_5 label span {
 
     font-size: 18px;
     color: rgb(92, 7, 7);
 }
 
 .addJob .container_2 input,
+.addJob .container_4 input,
 .addJob .container_3 select {
 
     width: 100%;
     height: 50px;
     outline: none;
-    font-size: 24px;
+    font-size: 18px;
     padding: 0px 10px;
     border-radius: 10px;
     border: 1px solid black;
@@ -445,10 +462,116 @@ header .parnet_2 button:hover {
     box-shadow: 5px 5px 10px rgb(186, 184, 184);
 }
 
+.addJob .container_4 .child_1 {
+
+    display: flex;
+    gap: 0px;
+}
+
+.addJob .container_4 .child_1 {
+
+    display: flex;
+
+}
+
+.addJob .container_4 .child_1 input {
+
+    width: 30%;
+    height: 50px;
+    outline: none;
+    font-size: 24px;
+    padding: 0px 10px;
+    border: 1px solid black;
+    background-color: transparent;
+    border-radius: 10px 0px 0px 10px;
+    box-shadow: 5px 5px 10px rgb(186, 184, 184);
+}
+
+.addJob .container_4 .child_1 .plus {
+
+    width: 5%;
+    height: 50px;
+    font-size: 38px;
+    font-weight: 400;
+    border: 1px solid black;
+    border-radius: 0px 10px 10px 0px;
+    background-color: rgb(214, 211, 211);
+    box-shadow: 0px 5px 10px rgb(186, 184, 184);
+}
+
+.addJob .container_4 .child_1 .minus {
+
+    width: 5%;
+    height: 50px;
+    font-size: 38px;
+    font-weight: 400;
+    border-left: none;
+    border-right: none;
+    border: 1px solid black;
+    background-color: rgb(214, 211, 211);
+    box-shadow: 0px 5px 10px rgb(186, 184, 184);
+
+    border-left: none;
+    border-right: none;
+}
+
+.addJob .container_4 .child_1 .plus:hover,
+.addJob .container_4 .child_1 .minus:hover {
+
+    background-color: rgb(190, 189, 189);
+}
+
+.addJob .container_3 select option {
+
+    color: rgb(27, 27, 27);
+    border: 6px solid black;
+    background-color: rgb(223, 221, 221);
+}
+
 .addJob .container_2 input:hover,
-.addJob .container_3 input:hover {
+.addJob .container_3 input:hover,
+.addJob .container_4 .child_1 input:hover {
 
     background-color: rgb(223, 221, 221);
+}
+
+.addJob .container_5 {
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.addJob .container_5 textarea {
+
+    width: 100%;
+
+    outline: none;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    box-shadow: 0px 5px 10px rgb(186, 184, 184);
+}
+
+textarea:hover {
+
+    background-color: rgb(223, 221, 221);
+}
+
+.addJob .confirm {
+
+
+    width: 140px;
+    height: 45px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border-style: none;
+    border-radius: 8px;
+    background-color: #004fcb;
 }
 
 
@@ -487,6 +610,20 @@ header .parnet_2 button:hover {
     }
 
     /* ---------------------------------- home ended ------------------------- */
+
+    /* ---------------------------------- Add Job started ------------------------- */
+
+    .addJob .container_4 .child_1 .plus {
+
+        width: 10%;
+    }
+
+    .addJob .container_4 .child_1 .minus {
+
+        width: 10%;
+    }
+
+    /* ---------------------------------- Add Job ended ------------------------- */
 
 }
 
@@ -542,6 +679,37 @@ header .parnet_2 button:hover {
     }
 
     /* ---------------------------------- PostJob ended ------------------------- */
+
+
+    /* ---------------------------------- Add Job started ------------------------- */
+
+    .addJob {
+
+        width: 95%;
+    }
+
+    .addJob .container_1 h1{
+
+        font-size: 45px;
+    }
+
+    .addJob .container_4 .child_1 input {
+
+        width: 55%;
+    }
+
+    .addJob .container_4 .child_1 .plus {
+
+        width: 15%;
+    }
+
+    .addJob .container_4 .child_1 .minus {
+
+        width: 15%;
+    }
+
+    /* ---------------------------------- Add Job ended ------------------------- */
+
 
 }
 
@@ -646,5 +814,27 @@ header .parnet_2 button:hover {
     }
 
     /* ---------------------------------- home ended ------------------------- */
+
+
+    /* ---------------------------------- Add Job started ------------------------- */
+
+    .addJob .container_4 .child_1 input {
+
+        width: 55%;
+    }
+
+    .addJob .container_4 .child_1 .plus {
+
+        width: 20%;
+    }
+
+    .addJob .container_4 .child_1 .minus {
+
+        width: 20%;
+    }
+
+    /* ---------------------------------- Add Job ended ------------------------- */
+
+
 
 }

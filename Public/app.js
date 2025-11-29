@@ -1,3 +1,4 @@
+// ----------------------------- SignUp started ----------------------------
 async function signUp(e) {
 
     try {
@@ -50,7 +51,10 @@ async function signUp(e) {
 
 
 }
+// ----------------------------- SignUp ended ----------------------------
 
+
+// ----------------------------- Login started ----------------------------
 async function login(e) {
 
     try {
@@ -111,7 +115,10 @@ async function login(e) {
 
 
 }
+// ----------------------------- Login ended ----------------------------
 
+
+// ----------------------------- Home stared ----------------------------
 async function home(e) {
 
     try {
@@ -136,7 +143,10 @@ async function home(e) {
 
 
 }
+// ----------------------------- Home ended ----------------------------
 
+
+// ----------------------------- PostJob started ----------------------------
 async function conti(e) {
 
 
@@ -183,6 +193,79 @@ async function conti(e) {
 
 
 }
+// ----------------------------- PostJob ended ----------------------------
+
+
+// ----------------------------- AddJon started ----------------------------
+async function addJobConfirm(e) {
+
+    try {
+        e.preventDefault();
+
+
+        let jobTilte = document.getElementById("tilte").value;
+        let jobLocation = document.getElementById("jobLocation").value;
+        let jobTimeline = document.getElementById("jobTimeline").value;
+        let jobType = document.getElementById("jobType").value;
+        let jobPay = document.getElementById("jobPay").value;
+        let quantityInput = document.getElementById("quantityInput").value;
+        let description = document.getElementById("description").value;
+
+        if (jobTilte === '' || jobLocation === '' || jobTimeline === '' || jobType === '' || jobPay === '' || description === '') {
+
+
+            alert("⚠️ Please fill in all fields before submitting!");
+            return;
+
+        }
+
+        if (jobLocation === 'Select' || jobTimeline === 'selectTime' || jobType === 'selectType' || quantityInput === "0" || jobPay === 'selectPay') {
+
+
+            alert("!Please select an option");
+            return;
+
+        }
+
+
+    }
+    catch (err) {
+
+        console.log(err);
+        alert("Not working")
+
+    }
+
+
+}
+
+let plus = document.getElementById("plus");
+let minus = document.getElementById("minus");
+let quantityInput = document.getElementById("quantityInput");
+
+plus.addEventListener("click", () => {
+
+    let currentValue = parseInt(quantityInput.value)
+
+    if (!isNaN(currentValue)) {
+
+        quantityInput.value = currentValue + 1
+    }
+
+});
+
+minus.addEventListener("click", () => {
+
+    let currentValue = parseInt(quantityInput.value)
+
+    if (!isNaN(currentValue) && currentValue > parseInt(quantityInput.min)) {
+
+        quantityInput.value = currentValue - 1
+    }
+
+});
+// ----------------------------- AddJon ended ----------------------------
+
 
 
 function goLogin(e) {
