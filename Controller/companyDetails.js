@@ -10,13 +10,13 @@ async function companyDetails(req, res) {
 
 
         const result = await new compDetai({ company, fName, lName, number }).save();
-        console.log(result);
+
 
         return res.send({
 
             result,
             status: 200,
-            message: `🎉 Thank you! Your details have been submitted successfully`
+            message: "🎉 Thank you! Your details have been submitted successfully"
         })
 
 
@@ -33,5 +33,23 @@ async function companyDetails(req, res) {
 
 }
 
+async function companiesData(req, res) {
 
-module.exports = companyDetails
+    try {
+
+        const companies = await compDetai.find();
+        res.status(200).send({
+            success: true,
+            data: companies
+        });
+
+    } catch (err) {
+
+        res.status(500).send({ message: "Server Error" });
+    }
+
+};
+
+
+
+module.exports = { companyDetails , companiesData }

@@ -147,17 +147,24 @@ async function home(e) {
 
 
 // ----------------------------- PostJob started ----------------------------
+
+var company = document.getElementById("company").value;
+var fName = document.getElementById("fName").value;
+var lName = document.getElementById("lName").value;
+var number = document.getElementById("number").value;
+
+
 async function conti(e) {
 
 
     try {
+
+        var company = document.getElementById("company").value;
+        var fName = document.getElementById("fName").value;
+        var lName = document.getElementById("lName").value;
+        var number = document.getElementById("number").value;
         e.preventDefault();
 
-
-        let company = document.getElementById("company").value;
-        let fName = document.getElementById("fName").value;
-        let lName = document.getElementById("lName").value;
-        let number = document.getElementById("number").value;
 
         if (company === '' || fName === '' || lName === '' || number === '') {
 
@@ -180,7 +187,20 @@ async function conti(e) {
             return;
         }
 
-        window.location.href = "addJob.html";
+
+        const res = await axios.post("http://localhost:3000/api/company", {
+
+            company,
+            fName,
+            lName,
+            number
+        });
+
+
+        if(res.status === 200){
+
+            window.location.href = "addJob.html";
+        }
 
 
     }
@@ -269,22 +289,64 @@ minus.addEventListener("click", () => {
 
 // ----------------------------- Find Job started ----------------------------
 
-async function jonFinder() {
+async function jobFinder(e) {
+
+    e.preventDefault();
+
 
     try {
 
-        let head = document.getElementById("findJob_head");
-        let paraOne = document.getElementById("findJob_paraOne");
-        let paraTwo = document.getElementById("findJob_paraTwo");
+        let findJob = document.getElementById("findJob");
+
+        const res = await axios.get("http://localhost:3000/api/companiesData", {
+
+            company,
+            fName,
+            lName,
+            number
+        });
+
+        const data = res.data.data;
+
+        if (data) {
+
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
 
 
-        const res = await axios.post("http://localhost:3000/api/jobs")
+                findJob.innerHTML += `<div class="container_1">
 
-    }
-    catch (err) {
+                    <div class="parent_1">
 
+                        <div class="child_1">
+                            <h1 id="findJob_head">${data[i].company}</h1>
+                        </div>
+
+                        <div class="child_2">
+                            <p id="findJob_paraOne">${data[i].fName}</p>
+                            <p id="findJob_paraTwo">${data[i].lName}</p>
+                        </div>
+
+                    </div>
+
+                </div>`
+
+            }
+        }
+
+
+        // if (res.status === 200) {
+
+
+        //     alert("Working successfully!");
+
+        // }
+
+    } catch (err) {
+        console.log("Error:", err);
     }
 }
+
 
 // ----------------------------- Find Job ended ----------------------------
 
