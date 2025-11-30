@@ -1,10 +1,11 @@
 const express = require("express");
-const jobFind = require("../Controller/jobFinder")
+const { jobData, jobDataPost } = require("../Controller/jobFinder")
 
 
 const router = express.Router();
 
-router.post("/jobFind", jobFind);
+router.post("/jobData", jobData);
+router.get("/jobDataPost", jobDataPost);
 
 
 module.exports = router

@@ -197,7 +197,7 @@ async function conti(e) {
         });
 
 
-        if(res.status === 200){
+        if (res.status === 200) {
 
             window.location.href = "addJob.html";
         }
@@ -216,7 +216,17 @@ async function conti(e) {
 // ----------------------------- PostJob ended ----------------------------
 
 
-// ----------------------------- AddJon started ----------------------------
+// ----------------------------- AddJob started ----------------------------
+
+var jobTilte = document.getElementById("tilte").value;
+var jobLocation = document.getElementById("jobLocation").value;
+var jobTimeline = document.getElementById("jobTimeline").value;
+var jobType = document.getElementById("jobType").value;
+var jobPay = document.getElementById("jobPay").value;
+var quantityInput = document.getElementById("quantityInput").value;
+var description = document.getElementById("description").value;
+
+
 async function addJobConfirm(e) {
 
     try {
@@ -244,7 +254,23 @@ async function addJobConfirm(e) {
 
             alert("!Please select an option");
             return;
+        }
 
+        const res = await axios.post("http://localhost:3000/api/jobData", {
+
+            jobTilte,
+            jobLocation,
+            jobTimeline,
+            jobType,
+            quantityInput,
+            jobPay,
+            description
+        });
+
+
+        if (res.status === 200) {
+
+            window.location.href = "home.html"
         }
 
 
@@ -261,7 +287,6 @@ async function addJobConfirm(e) {
 
 let plus = document.getElementById("plus");
 let minus = document.getElementById("minus");
-let quantityInput = document.getElementById("quantityInput");
 
 plus.addEventListener("click", () => {
 
@@ -284,7 +309,15 @@ minus.addEventListener("click", () => {
     }
 
 });
-// ----------------------------- AddJon ended ----------------------------
+
+
+function addJob(e) {
+
+    e.preventDefault();
+
+    window.location.href = "postJob.html"
+}
+// ----------------------------- AddJob ended ----------------------------
 
 
 // ----------------------------- Find Job started ----------------------------
@@ -298,7 +331,7 @@ async function jobFinder(e) {
 
         let findJob = document.getElementById("findJob");
 
-        const res = await axios.get("http://localhost:3000/api/companiesData", {
+        const res1 = await axios.get("http://localhost:3000/api/companiesData", {
 
             company,
             fName,
@@ -306,25 +339,35 @@ async function jobFinder(e) {
             number
         });
 
-        const data = res.data.data;
+        
+        const res2 = await axios.get("http://localhost:3000/api/jobDataPost", {
+            
+            jobLocation,
+        });
+        
+        const response1 = res1.data.data;
+        const response2 = res2.data.jobPost;
 
-        if (data) {
 
-            console.log(data);
-            for (let i = 0; i < data.length; i++) {
+        const values = Math.min(response1.length, response2.length);
+
+        if (values) {
+
+            console.log(values);
+            for (let i = 0; i < values; i++) {
 
 
                 findJob.innerHTML += `<div class="container_1">
 
-                    <div class="parent_1">
+                    <div class="parent_1" onclick="newJobData()">
 
                         <div class="child_1">
-                            <h1 id="findJob_head">${data[i].company}</h1>
+                            <h1 id="findJob_head">${response1[i].company}</h1>
                         </div>
 
                         <div class="child_2">
-                            <p id="findJob_paraOne">${data[i].fName}</p>
-                            <p id="findJob_paraTwo">${data[i].lName}</p>
+                            <p id="findJob_paraOne">${response1[i].fName + " " + response1[i].lName}</p>
+                            <p id="findJob_paraTwo">${response2[i].jobLocation}</p>
                         </div>
 
                     </div>
@@ -349,6 +392,26 @@ async function jobFinder(e) {
 
 
 // ----------------------------- Find Job ended ----------------------------
+
+
+// ----------------------------- new Job Data started ----------------------------
+
+function newJobData() {
+
+    window.location.href = "newJobData.html"
+
+}
+
+
+function backFile(e) {
+
+    e.preventDefault();
+
+    window.location.href = "findJob.html"
+}
+
+
+// ----------------------------- new Job Data ended ----------------------------
 
 
 
@@ -398,11 +461,5 @@ function backPost(e) {
     window.location.href = "home.html"
 }
 
-function addJob(e) {
-
-    e.preventDefault();
-
-    window.location.href = "postJob.html"
-}
 
 

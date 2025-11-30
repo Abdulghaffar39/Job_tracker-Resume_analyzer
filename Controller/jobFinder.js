@@ -1,6 +1,6 @@
 const job = require("../db/jobs")
 
-async function jobFind(req, res) {
+async function jobData(req, res) {
 
     try {
 
@@ -32,4 +32,29 @@ async function jobFind(req, res) {
 
 }
 
-module.exports = jobFind
+
+async function jobDataPost(req, res) {
+
+    try {
+
+        const jobPost = await job.find();
+
+        console.log(jobPost);
+        
+        
+        res.status(200).send({
+            
+            jobPost,
+            success: true,
+            message: "find all data"
+        });
+
+    } catch (err) {
+
+        res.status(500).send({ message: "Server Error" });
+    }
+
+};
+
+
+module.exports = { jobData, jobDataPost }
