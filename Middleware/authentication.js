@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-console.log("Secret key ", process.env.JWTSECRETKEY);
+// console.log("Secret key ", process.env.JWTSECRETKEY);
 
 const authrization = async (req, res, next) => {
 

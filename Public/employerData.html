@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="newJobDetais(event)">
+<body>
 
 
     <header>
@@ -23,7 +23,7 @@
             <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
         </div>
 
-        <div class="parnet_2" onclick="backFile(event)">
+        <div class="parnet_2" onclick="applyBack(event)">
 
             <button>Back</button>
 
@@ -36,28 +36,11 @@
 
         <div class="containerCont">
 
-            <div class="container_1">
-
-                <div class="parent_1">
-
-                    <h1 id="newJobHead"></h1>
-
-                </div>
-
-                <div class="parent_2">
-
-                    <p id="newJobLocation"></p>
-                    <p id="newJobSalary1"></p>
-
-                </div>
-
-            </div>
-
             <div class="container_2">
 
                 <div class="parent_1">
 
-                    <h1 class="jobDetailsHead">Job Details</h1>
+                    <h1 class="jobDetailsHead">Your Details</h1>
 
                 </div>
 
@@ -65,14 +48,13 @@
 
                     <div class="child_1">
 
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                        <h4>Pay</h4>
+                        <h4>First Name</h4>
 
                     </div>
 
                     <div class="child_2">
 
-                        <p id="newJobPayment"></p>
+                        <input type="text">
 
                     </div>
 
@@ -83,14 +65,13 @@
 
                     <div class="child_1">
 
-                        <i class="fa-solid fa-briefcase"></i>
-                        <h4>Job Type</h4>
+                        <h4>Last Name</h4>
 
                     </div>
 
                     <div class="child_2">
 
-                        <p id="newJobType"></p>
+                        <input type="text">
 
                     </div>
 
@@ -101,14 +82,13 @@
 
                     <div class="child_1">
 
-                        <i class="fa-solid fa-location-dot"></i>
-                        <h4>Location</h4>
+                        <h4>Phone Number</h4>
 
                     </div>
 
                     <div class="child_2">
 
-                        <p id="newJobLocation2"></p>
+                        <input type="number">
 
                     </div>
 
@@ -118,17 +98,19 @@
 
                     <div class="child_1">
 
-                        <h4 id="newJobDesHead">Full Job Description</h4>
+                        <h4 id="newJobDesHead">Add Resume</h4>
 
-                        <p id="newJobDesPara"></p>
+                        <input type="file">
+
+                        <button id="btnUpload" >Upload</button>
 
                     </div>
 
                 </div>
 
-                <div class="parent_6" onclick="apply(event)">
+                <div class="parent_6">
 
-                    <button id="apply">Apply now</button>
+                    <button id="apply">Confirm</button>
 
                 </div>
 

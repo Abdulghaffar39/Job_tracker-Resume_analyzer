@@ -3,16 +3,17 @@ const dbCon = require("./db/db.connection");
 const router = require("./Router/route");
 const routeTwo = require("./Router/routeTwo");
 const routeJob = require("./Router/routeJob");
+const fileUpload = require("express-fileupload");
 const cors = require("cors")
 
 const app = express()
+const PORT = 3000 || process.env.PORT;
 
 app.use(cors())
+app.use(fileUpload());
 app.use(express.json());
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-
-const PORT = 3000 || process.env.PORT;
 
 
 dbCon();

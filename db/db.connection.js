@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-console.log(process.env.DB);
+// console.log(process.env.DB);
 
 async function dbCon() {
 

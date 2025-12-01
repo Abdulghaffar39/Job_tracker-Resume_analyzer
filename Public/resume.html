@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/utility.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+
+</head>
+
+<body onload="resume()">
+
+
+    <header>
+
+        <div class="parnet_1">
+
+            <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
+        </div>
+
+        <div class="parnet_2" onclick="resumeBack(event)">
+
+            <button>Back</button>
+
+        </div>
+
+    </header>
+
+
+    <!-- <main class="resume">
+
+        <div class="container_1">
+
+            <img src="./images/download.svg" id="fileInput" alt="upload">
+
+            <input type="file" id="fileResume">
+
+        </div>
+
+    </main> -->
+
+    <div class="container">
+        <h2>AI Resume Analyzer</h2>
+
+        <label for="fileInput">Upload Resume (PDF)</label>
+        <input type="file" id="fileInput" accept=".pdf">
+
+        <label for="jobDesc">Optional: Job Description</label>
+        <textarea id="jobDesc" placeholder="Paste job description here..."></textarea>
+
+        <button id="btnUpload">Upload & Analyze</button>
+
+        <div id="loading">Analyzing resume... Please wait...</div>
+
+        <div id="result"></div>
+    </div>
+
+
+    <script src="app.js"></script>
+    <script src="https://kit.fontawesome.com/1de706ad7b.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

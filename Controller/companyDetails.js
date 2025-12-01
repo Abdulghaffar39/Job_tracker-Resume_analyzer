@@ -38,6 +38,7 @@ async function companiesData(req, res) {
     try {
 
         const companies = await compDetai.find();
+        
         res.status(200).send({
             success: true,
             data: companies
