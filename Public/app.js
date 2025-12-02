@@ -513,52 +513,6 @@ function applyBack(e) {
 
 // ----------------------------- resume started ----------------------------
 
-// async function resume() {
-
-//     let fileInput = document.getElementById("fileResume");
-
-//     if (!fileInput.files.length) {
-//         alert("Please select a PDF file");
-//         return;
-//     }
-
-//     // 1️⃣ FormData banaye
-//     const formData = new FormData();
-//     formData.append("file", fileInput.files[0]); // PDF file
-
-//     try {
-//         // 2️⃣ Axios POST request
-//         const res = await axios.post("http://localhost:3000/api/upload", formData, {
-//             headers: {
-//                 "Content-Type": "multipart/form-data", // browser automatically set karta hai, par explicitly bhi chalega
-//             },
-//         });
-
-//         console.log(res.data); // backend response
-//         console.log(res.data.aiAnalysis); // backend response
-//         alert("Upload successful! Check console for AI result.");
-
-//         // if (!data.success) return alert("Error: " + data.message);
-
-//         let ai
-
-//         const jsonMatch = data.aiAnalysis.match(/\{[\s\S]*\}/);
-//         ai = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
-
-//         console.log(ai);
-//         console.log(data.extractedText);
-//         console.log(ai["Resume Score"] || "N/A");
-
-
-
-
-
-//     } catch (err) {
-//         console.error("Upload error:", err);
-//         alert("Upload failed! See console.");
-//     }
-// }
-
 async function resume() {
 
     let fileInput = document.getElementById("fileResume");
@@ -568,42 +522,50 @@ async function resume() {
         return;
     }
 
+    // 1️⃣ FormData banaye
     const formData = new FormData();
-    formData.append("file", fileInput.files[0]);
+    formData.append("file", fileInput.files[0]); // PDF file
 
     try {
+        // 2️⃣ Axios POST request
         const res = await axios.post("http://localhost:3000/api/upload", formData, {
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: {
+                "Content-Type": "multipart/form-data", // browser automatically set karta hai, par explicitly bhi chalega
+            },
         });
 
-        console.log(res.data);
+        console.log(res.data.aiAnalysis); // backend response
+        alert("Upload successful! Check console for AI result.");
 
-        const data = res.data;
+        const data = res.data.aiAnalysis;  // <-- Gemini ka JSON
+        // console.log(data);
 
-        // JSON extract from plain text response
-        let ai = null;
-        const jsonMatch = data.aiAnalysis.match(/\{[\s\S]*\}/);
-        ai = jsonMatch ? JSON.parse(jsonMatch[0]) : data.aiAnalysis;
+        // 🔥🔥 YAHAN UI PAR DATA SHOW HO GA 🔥🔥
+        document.getElementById("resultBox").innerHTML = `
+    <h3>Resume Score: ${data["Resume Score"] ?? "N/A"}</h3>
+    <h3>ATS Score: ${data["ATS Score"] ?? "N/A"}</h3>
 
-        // SHOW UI BOX
-        document.getElementById("resultBox").classList.remove("hidden");
+    <h4>Missing Skills:</h4>
+    <ul>
+        ${(data["Missing Skills"] || []).map(s => `<li>${s}</li>`).join("")}
+    </ul>
 
-        // Show AI analysis
-        document.getElementById("analysisOutput").innerText =
-            JSON.stringify(ai, null, 4);
+    <h4>Suggestions:</h4>
+    <ul>
+        ${(data["Suggestions"] || []).map(s => `<li>${s}</li>`).join("")}
+    </ul>
 
-        // Show extracted text
-        document.getElementById("textOutput").innerText =
-            data.extractedText || "No text extracted.";
+    <h4>Improved Resume:</h4>
+    <pre>${data["Improved Resume Text"] ?? ""}</pre>
+`;
 
-        alert("Upload successful! Check UI below.");
+
 
     } catch (err) {
         console.error("Upload error:", err);
-        alert("Upload failed! Check console.");
+        alert("Upload failed! See console.");
     }
 }
-
 
 function resumeBack() {
 

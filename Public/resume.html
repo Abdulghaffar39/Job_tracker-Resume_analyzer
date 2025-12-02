@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 
-    <style>
+    <!-- <style>
         body {
             font-family: Arial, sans-serif;
             background: #eaf1ff;
@@ -93,33 +93,56 @@
             overflow-y: auto;
             white-space: pre-wrap;
         }
-    </style>
+    </style> -->
 
 </head>
 
 <body>
 
-    <div class="container_1">
+    <header>
 
-        <div class="parent_1">
+        <div class="parnet_1">
+
+            <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
+        </div>
+
+        <div class="parnet_2" onclick="backPost(event)">
+
+            <button>Back</button>
+
+        </div>
+
+    </header>
+
+    <main class="resume">
+
+        <div class="container_1">
+
             <h2 class="title_1">AI Resume Analyzer</h2>
 
-            <input type="file" id="fileResume" accept="application/pdf" class="input_1">
 
-            <button onclick="resume()" class="btn_1">Upload & Analyze</button>
+            <div class="parent_1">
 
-            <div id="resultBox" class="result_1 hidden">
+                <input type="file" id="fileResume" accept="application/pdf" class="input_1">
+                <button onclick="resume()">Upload & Analyze</button>
+
+            </div>
+
+            <!-- <div id="resultBox" class="result_1 hidden">
                 <h3 class="sub_1">AI Analysis Result</h3>
 
                 <pre id="analysisOutput" class="output_1"></pre>
 
                 <h3 class="sub_1">Extracted Text</h3>
                 <pre id="textOutput" class="output_1"></pre>
-            </div>
+            </div> -->
+
 
         </div>
 
-    </div>
+        <div id="resultBox"></div>
+
+    </main>
 
     <script src="https://kit.fontawesome.com/1de706ad7b.js" crossorigin="anonymous"></script>
     <script src="app.js"></script>
