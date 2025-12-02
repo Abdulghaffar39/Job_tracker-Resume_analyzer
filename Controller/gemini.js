@@ -1,8 +1,9 @@
-// const pdfjsLib = require("pdfjs-dist/legacy/build/pdf.js");
 const pdfjsLib = require("pdfjs-dist/legacy/build/pdf.js");
 const { GoogleGenAI } = require("@google/genai");
 
-async function upload() {
+require("dotenv").config();
+
+async function upload(req, res) {
 
   if (!req.files || !req.files.file) {
 
@@ -10,7 +11,7 @@ async function upload() {
   }
 
   try {
-
+    // 1️⃣ Extract text from PDF
     const data = new Uint8Array(req.files.file.data);
     const pdf = await pdfjsLib.getDocument({ data }).promise;
 
@@ -21,27 +22,27 @@ async function upload() {
       text += content.items.map(i => i.str).join(" ") + "\n\n";
     }
 
-    if (!process.env.GEMINI_KEY) {
-
-      return res.status(500).send({ success: false, message: "GEMINI_KEY not set in env" });
+    // 2️⃣ Send extracted text to Gemini API
+    if (!process.env.GEMINI_API_KEY) {
+      return res.status(500).send({ success: false, message: "GEMINI_API_KEY not set in env" });
     }
 
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_KEY });
+    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
     const prompt = `
-      You are an AI resume expert.
-      Analyze the resume text below and return JSON with:
-      1. Resume Score (out of 100)
-      2. ATS Score
-      3. Match Percentage (with respect to the job description: ${req.body.jobDesc || "N/A"})
-      4. Missing Skills
-      5. Suggestions
-      6. Improved Resume Text
+        You are an AI resume expert.
+        Analyze the resume text below and return JSON with:
+        1. Resume Score (out of 100)
+        2. ATS Score
+        3. Missing Skills
+        4. Suggestions
+        5. Improved Resume Text
 
-      Resume:
-      ${text}`;
+        Resume:
+        ${text}`;
 
     const result = await ai.models.generateContent({
+
       model: "gemini-2.5-flash",
       contents: [{ text: prompt }]
     });
@@ -51,16 +52,10 @@ async function upload() {
     // 3️⃣ Send AI response to client
     res.send({ success: true, extractedText: text, aiAnalysis: aiText });
 
-
-  }
-  catch (error) {
-
+  } catch (err) {
     console.error(err);
     res.status(500).send({ success: false, message: "Error processing PDF or AI", details: err.message });
-
   }
-
-
-}
+};
 
 module.exports = upload

@@ -4,48 +4,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Resume Analyzer</title>
 
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/utility.css">
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf1ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container_1 {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .parent_1 {
+            width: 450px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px #b9c8ff;
+        }
+
+        .title_1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1a237e;
+        }
+
+        .input_1 {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #3f51b5;
+            border-radius: 10px;
+            background: #f4f7ff;
+            margin-bottom: 15px;
+        }
+
+        .btn_1 {
+            width: 100%;
+            padding: 12px;
+            background: #3f51b5;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .btn_1:hover {
+            background: #303f9f;
+        }
+
+        .result_1 {
+            margin-top: 20px;
+            background: #f4f7ff;
+            color: black;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .sub_1 {
+            margin-top: 10px;
+            color: #1a237e;
+        }
+
+        .output_1 {
+            background: white;
+            color: black;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #cfd8dc;
+            height: auto;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+
 </head>
 
-<body onload="resume()">
+<body>
 
+    <div class="container_1">
 
-    <header>
+        <div class="parent_1">
+            <h2 class="title_1">AI Resume Analyzer</h2>
 
-        <div class="parnet_1">
+            <input type="file" id="fileResume" accept="application/pdf" class="input_1">
 
-            <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
-        </div>
+            <button onclick="resume()" class="btn_1">Upload & Analyze</button>
 
-        <div class="parnet_2" onclick="resumeBack(event)">
+            <div id="resultBox" class="result_1 hidden">
+                <h3 class="sub_1">AI Analysis Result</h3>
 
-            <button>Back</button>
+                <pre id="analysisOutput" class="output_1"></pre>
 
-        </div>
-
-    </header>
-
-
-    <main class="resume">
-
-        <div class="container_1">
-
-            <img src="./images/download.svg" id="fileInput" alt="upload">
-
-            <input type="file" id="fileResume">
+                <h3 class="sub_1">Extracted Text</h3>
+                <pre id="textOutput" class="output_1"></pre>
+            </div>
 
         </div>
 
-    </main>
+    </div>
 
-    <script src="app.js"></script>
     <script src="https://kit.fontawesome.com/1de706ad7b.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

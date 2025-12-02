@@ -513,6 +513,98 @@ function applyBack(e) {
 
 // ----------------------------- resume started ----------------------------
 
+// async function resume() {
+
+//     let fileInput = document.getElementById("fileResume");
+
+//     if (!fileInput.files.length) {
+//         alert("Please select a PDF file");
+//         return;
+//     }
+
+//     // 1️⃣ FormData banaye
+//     const formData = new FormData();
+//     formData.append("file", fileInput.files[0]); // PDF file
+
+//     try {
+//         // 2️⃣ Axios POST request
+//         const res = await axios.post("http://localhost:3000/api/upload", formData, {
+//             headers: {
+//                 "Content-Type": "multipart/form-data", // browser automatically set karta hai, par explicitly bhi chalega
+//             },
+//         });
+
+//         console.log(res.data); // backend response
+//         console.log(res.data.aiAnalysis); // backend response
+//         alert("Upload successful! Check console for AI result.");
+
+//         // if (!data.success) return alert("Error: " + data.message);
+
+//         let ai
+
+//         const jsonMatch = data.aiAnalysis.match(/\{[\s\S]*\}/);
+//         ai = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+
+//         console.log(ai);
+//         console.log(data.extractedText);
+//         console.log(ai["Resume Score"] || "N/A");
+
+
+
+
+
+//     } catch (err) {
+//         console.error("Upload error:", err);
+//         alert("Upload failed! See console.");
+//     }
+// }
+
+async function resume() {
+
+    let fileInput = document.getElementById("fileResume");
+
+    if (!fileInput.files.length) {
+        alert("Please select a PDF file");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        const res = await axios.post("http://localhost:3000/api/upload", formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+        });
+
+        console.log(res.data);
+
+        const data = res.data;
+
+        // JSON extract from plain text response
+        let ai = null;
+        const jsonMatch = data.aiAnalysis.match(/\{[\s\S]*\}/);
+        ai = jsonMatch ? JSON.parse(jsonMatch[0]) : data.aiAnalysis;
+
+        // SHOW UI BOX
+        document.getElementById("resultBox").classList.remove("hidden");
+
+        // Show AI analysis
+        document.getElementById("analysisOutput").innerText =
+            JSON.stringify(ai, null, 4);
+
+        // Show extracted text
+        document.getElementById("textOutput").innerText =
+            data.extractedText || "No text extracted.";
+
+        alert("Upload successful! Check UI below.");
+
+    } catch (err) {
+        console.error("Upload error:", err);
+        alert("Upload failed! Check console.");
+    }
+}
+
+
 function resumeBack() {
 
     window.location.href = "findJob.html";
@@ -525,16 +617,6 @@ function resumeCheck() {
 
 // ----------------------------- resume ended ----------------------------
 
-// async function resume() {
-
-//     let fileResume = document.getElementById("fileResume");
-//     const res = await axios.post("http://localhost:3000/api/generate", 
-//         {
-//             fileResume}
-//     )
-
-
-// }
 
 function goLogin(e) {
 
