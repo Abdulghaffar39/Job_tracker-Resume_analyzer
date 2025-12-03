@@ -537,13 +537,21 @@ async function resume() {
         alert("Upload successful! Check console for AI result.");
 
         const data = res.data.aiAnalysis;  // <-- Gemini ka JSON
-        // console.log(data);
+        console.log(data);
 
         let clean = data.replace(/```json|```/g, "").trim();
         let parsed = JSON.parse(clean);
         console.log(parsed);
 
-        
+        document.getElementById("resumeScore").innerText = parsed["Resume Score"];
+    document.getElementById("atsScore").innerText = parsed["ATS Score"];
+
+    const skillsList = document.getElementById("skillsList");
+    parsed["Missing Skills"].forEach(skill => {
+        const li = document.createElement("li");
+        li.textContent = skill;
+        skillsList.appendChild(li);
+    });
 
     } catch (err) {
         console.error("Upload error:", err);

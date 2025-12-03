@@ -792,6 +792,26 @@ textarea:hover {
     background-color: rgb(172, 170, 170);
 }
 
+.checkResult {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 200px;
+    color: black;
+}
+
+.checkResult p {
+
+    font-size: 18px;
+    width: 100%;
+    height: 200px;
+    color: gray;
+}
+
 /* ---------------------------------- resume ended ------------------------- */
 
 
@@ -1002,7 +1022,6 @@ textarea:hover {
     background-color: black;
     border-radius: 0px 0px 16px 16px;
 }
-
 
 
 /* ---------------------------------- Job Details ended ------------------------- */
@@ -1333,7 +1352,7 @@ textarea:hover {
 
     /* ---------------------------------- Resume started ------------------------- */
 
-    .resume .container_1  {
+    .resume .container_1 {
 
         height: 200px;
 
@@ -1342,7 +1361,7 @@ textarea:hover {
         gap: 40px;
     }
 
-    .resume .container_1 .parent_1  {
+    .resume .container_1 .parent_1 {
 
         display: flex;
         flex-direction: column;
