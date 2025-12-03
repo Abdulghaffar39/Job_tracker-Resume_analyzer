@@ -534,32 +534,16 @@ async function resume() {
             },
         });
 
-        console.log(res.data.aiAnalysis); // backend response
         alert("Upload successful! Check console for AI result.");
 
         const data = res.data.aiAnalysis;  // <-- Gemini ka JSON
         // console.log(data);
 
-        // 🔥🔥 YAHAN UI PAR DATA SHOW HO GA 🔥🔥
-        document.getElementById("resultBox").innerHTML = `
-    <h3>Resume Score: ${data["Resume Score"] ?? "N/A"}</h3>
-    <h3>ATS Score: ${data["ATS Score"] ?? "N/A"}</h3>
+        let clean = data.replace(/```json|```/g, "").trim();
+        let parsed = JSON.parse(clean);
+        console.log(parsed);
 
-    <h4>Missing Skills:</h4>
-    <ul>
-        ${(data["Missing Skills"] || []).map(s => `<li>${s}</li>`).join("")}
-    </ul>
-
-    <h4>Suggestions:</h4>
-    <ul>
-        ${(data["Suggestions"] || []).map(s => `<li>${s}</li>`).join("")}
-    </ul>
-
-    <h4>Improved Resume:</h4>
-    <pre>${data["Improved Resume Text"] ?? ""}</pre>
-`;
-
-
+        
 
     } catch (err) {
         console.error("Upload error:", err);
