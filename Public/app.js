@@ -548,11 +548,11 @@ async function resume() {
         document.querySelector(".checkResult").style.display = "block";
 
         let data = res.data.aiAnalysis;
-        
+
         // clean & parse JSON
         let clean = data.replace(/```json|```/g, "").trim();
         let parsed = JSON.parse(clean);
-        
+
         console.log(parsed + "line 556");
         // Resume Score
         document.getElementById("resumeScore").innerText = parsed["Resume Score"];
@@ -623,15 +623,9 @@ async function saveCVData() {
             { resumeText }
         );
 
-
-        // const doc = new jsPDF();
-        // doc.setFontSize(12);
-        // const splitText = doc.splitTextToSize(content, 180);
-        // doc.text(splitText, 10, 10);
-
         alert("Improved Resume Saved Successfully!");
         console.log(response.data.details);
-        doc.save("gemini-api-output.pdf");
+
     }
     catch (error) {
 
@@ -639,6 +633,24 @@ async function saveCVData() {
         alert("Error: Could not save resume.");
     }
 }
+async function download() {
+    
+    const resumeElement = document.getElementById("resumeContainer"); // ELEMENT, not innerText
+
+    const opt = {
+        margin: 1,
+        filename: 'gemini-data-html.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf()
+        .set(opt)
+        .from(resumeElement)
+        .save();
+}
+
 
 
 function resumeBack() {
