@@ -1,5 +1,6 @@
 const pdfjsLib = require("pdfjs-dist/legacy/build/pdf.js");
 const { GoogleGenAI } = require("@google/genai");
+const saveResumes = require("../db/resume")
 
 require("dotenv").config();
 
@@ -58,4 +59,30 @@ async function upload(req, res) {
   }
 };
 
-module.exports = upload
+async function saveResume(req, res) {
+
+  try {
+
+    const { resumeText } = req.body;
+
+    let response = await new saveResumes({ resumeText }).save();
+    console.log(response);
+
+
+    return res.send({
+
+      response,
+      status: 200,
+      message: "Your Resume data save successfuly...",
+
+    })
+
+
+  } catch (err) {
+
+    console.error(err);
+    res.status(500).send({ success: false, message: "Rsume not found", details: err.message });
+  }
+};
+
+module.exports = { upload, saveResume }

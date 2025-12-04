@@ -512,6 +512,7 @@ function applyBack(e) {
 
 
 // ----------------------------- resume started ----------------------------
+document.querySelector(".checkResult").style.display = "block";
 
 async function resume() {
 
@@ -536,28 +537,109 @@ async function resume() {
 
         alert("Upload successful! Check console for AI result.");
 
-        const data = res.data.aiAnalysis;  // <-- Gemini ka JSON
-        console.log(data);
+        // const data = res.data.aiAnalysis;  // <-- Gemini ka JSON
+        // console.log(data);
 
+        // let clean = data.replace(/```json|```/g, "").trim();
+        // let parsed = JSON.parse(clean);
+        // console.log(parsed);
+
+        // 🔥 Ye line result section ko show karegi
+        document.querySelector(".checkResult").style.display = "block";
+
+        let data = res.data.aiAnalysis;
+        
+        // clean & parse JSON
         let clean = data.replace(/```json|```/g, "").trim();
         let parsed = JSON.parse(clean);
-        console.log(parsed);
-
+        
+        console.log(parsed + "line 556");
+        // Resume Score
         document.getElementById("resumeScore").innerText = parsed["Resume Score"];
-    document.getElementById("atsScore").innerText = parsed["ATS Score"];
+        document.getElementById("atsScore").innerText = parsed["ATS Score"];
 
-    const skillsList = document.getElementById("skillsList");
-    parsed["Missing Skills"].forEach(skill => {
-        const li = document.createElement("li");
-        li.textContent = skill;
-        skillsList.appendChild(li);
-    });
+        // Missing Skills
+        const skillsList = document.getElementById("skillsList");
+        skillsList.innerHTML = "";
+        parsed["Missing Skills"].forEach(skill => {
+            skill = skill.replace(/\*/g, ""); // remove stars
+            const li = document.createElement("li");
+            li.textContent = skill;
+            skillsList.appendChild(li);
+        });
+
+        // Suggestions
+        const suggestionsContainer = document.getElementById("suggestionsContainer");
+        suggestionsContainer.innerHTML = "";
+        parsed["Suggestions"].forEach(txt => {
+            txt = txt.replace(/\*/g, "");
+            const div = document.createElement("div");
+            div.style.padding = "10px";
+            div.style.margin = "10px 0";
+            div.style.border = "1px solid #ddd";
+            div.style.borderRadius = "8px";
+            div.innerHTML = txt;
+            suggestionsContainer.appendChild(div);
+        });
+
+        // Improved Resume
+        const resumeContainer = document.getElementById("resumeContainer");
+        resumeContainer.innerHTML = "";
+
+        let resumeText = parsed["Improved Resume Text"];
+        let sections = resumeText.split('---');
+
+        sections.forEach(section => {
+            section = section.replace(/\*/g, ""); // remove stars
+            const div = document.createElement("div");
+            div.style.border = "1px solid #ddd";
+            div.style.padding = "12px";
+            div.style.margin = "10px 0";
+            div.style.borderRadius = "8px";
+            div.style.whiteSpace = "pre-wrap";
+            div.innerText = section.trim();
+            resumeContainer.appendChild(div);
+        });
+
 
     } catch (err) {
         console.error("Upload error:", err);
         alert("Upload failed! See console.");
     }
 }
+
+// const { jsPDF } = window.jspdf;
+
+async function saveCVData() {
+
+    let resumeText = document.getElementById("resumeContainer").innerText;
+
+    console.log(resumeText);
+
+    try {
+
+        const response = await axios.post("http://localhost:3000/api/saveResume",
+
+            { resumeText }
+        );
+
+
+        // const doc = new jsPDF();
+        // doc.setFontSize(12);
+        // const splitText = doc.splitTextToSize(content, 180);
+        // doc.text(splitText, 10, 10);
+
+        alert("Improved Resume Saved Successfully!");
+        console.log(response.data.details);
+        doc.save("gemini-api-output.pdf");
+    }
+    catch (error) {
+
+        console.error("Error saving resume:", error);
+        alert("Error: Could not save resume.");
+    }
+}
+
 
 function resumeBack() {
 
