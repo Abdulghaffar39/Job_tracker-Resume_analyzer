@@ -537,12 +537,6 @@ async function resume() {
 
         alert("Upload successful! Check console for AI result.");
 
-        // const data = res.data.aiAnalysis;  // <-- Gemini ka JSON
-        // console.log(data);
-
-        // let clean = data.replace(/```json|```/g, "").trim();
-        // let parsed = JSON.parse(clean);
-        // console.log(parsed);
 
         // 🔥 Ye line result section ko show karegi
         document.querySelector(".checkResult").style.display = "block";
@@ -608,13 +602,10 @@ async function resume() {
     }
 }
 
-// const { jsPDF } = window.jspdf;
 
 async function saveCVData() {
 
     let resumeText = document.getElementById("resumeContainer").innerText;
-
-    console.log(resumeText);
 
     try {
 
@@ -633,9 +624,19 @@ async function saveCVData() {
         alert("Error: Could not save resume.");
     }
 }
+
 async function download() {
-    
-    const resumeElement = document.getElementById("resumeContainer"); // ELEMENT, not innerText
+
+    const resumeElement = document.getElementById("resumeContainer");
+
+    const response = await axios.get("http://localhost:3000/api/saveResume");
+
+    console.log(response.data + "line 637");
+
+
+    // console.log(resumeText + "line 631");
+
+
 
     const opt = {
         margin: 1,

@@ -11,5 +11,6 @@ router.post("/login", login);
 router.post("/home", authrization, home);
 router.post("/upload", upload);
 router.post("/saveResume", saveResume);
+router.get("/saveResume", saveResume);
 
 module.exports = router
