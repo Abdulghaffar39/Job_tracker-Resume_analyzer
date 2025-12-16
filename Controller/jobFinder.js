@@ -18,8 +18,6 @@ async function jobData(req, res) {
             message: `🎉 Thank you, ! Your details have been submitted successfully`
         })
 
-
-
     }
     catch (error) {
 

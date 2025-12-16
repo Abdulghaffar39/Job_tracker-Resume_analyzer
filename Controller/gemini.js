@@ -85,4 +85,28 @@ async function saveResume(req, res) {
   }
 };
 
-module.exports = { upload, saveResume }
+async function getResumeData(req, res) {
+
+  try {
+
+    let getDataRes = await saveResumes.find();
+    console.log(getDataRes);
+
+
+    return res.send({
+
+      getDataRes,
+      status: 200,
+      message: "Your Resume data save successfuly...",
+
+    })
+
+
+  } catch (err) {
+
+    console.error(err);
+    res.status(500).send({ success: false, message: "Rsume not found", details: err.message });
+  }
+};
+
+module.exports = { upload, saveResume, getResumeData }

@@ -1,3 +1,5 @@
+const { json } = require("body-parser");
+
 // ----------------------------- SignUp started ----------------------------
 async function signUp(e) {
 
@@ -394,7 +396,6 @@ async function jobFinder(e) {
 
 
 // ----------------------------- new Job Data started ----------------------------
-
 function newJobData() {
 
     window.location.href = "newJobData.html"
@@ -408,13 +409,10 @@ function backFile(e) {
 
     window.location.href = "findJob.html"
 }
-
-
 // ----------------------------- new Job Data ended ----------------------------
 
 
 // ----------------------------- new Job Detais started ----------------------------
-
 async function newJobDetais(e) {
 
     e.preventDefault()
@@ -484,14 +482,12 @@ async function newJobDetais(e) {
     }
 
 }
-
 // ----------------------------- new Job Detais ended ----------------------------
 
 
 
 
 // ----------------------------- employer started ----------------------------
-
 function apply(e) {
 
     e.preventDefault();
@@ -507,7 +503,6 @@ function applyBack(e) {
     window.location.href = "newJobData.html"
 
 }
-
 // ----------------------------- employer ended ----------------------------
 
 
@@ -602,6 +597,7 @@ async function resume() {
     }
 }
 
+let resumeText = document.getElementById("resumeContainer").innerText;
 
 async function saveCVData() {
 
@@ -614,8 +610,8 @@ async function saveCVData() {
             { resumeText }
         );
 
-        alert("Improved Resume Saved Successfully!");
         console.log(response.data.details);
+        window.location.href = "template.html"
 
     }
     catch (error) {
@@ -625,33 +621,28 @@ async function saveCVData() {
     }
 }
 
-async function download() {
+async function templates(e) {
 
-    const resumeElement = document.getElementById("resumeContainer");
-
-    const response = await axios.get("http://localhost:3000/api/saveResume");
-
-    console.log(response.data + "line 637");
+    e.preventDefault();
 
 
-    // console.log(resumeText + "line 631");
+    try {
 
+        const res = await axios.get("http://localhost:3000/api/getResumeData");
 
+        console.log(res.data.getDataRes[0]);
+        console.log(res.data.getDataRes);
 
-    const opt = {
-        margin: 1,
-        filename: 'gemini-data-html.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
+        
 
-    html2pdf()
-        .set(opt)
-        .from(resumeElement)
-        .save();
+    }
+    catch (error) {
+
+        console.error("Error saving resume:", error);
+    }
 }
 
+// ----------------------------- resume ended ----------------------------
 
 
 function resumeBack() {
@@ -663,7 +654,6 @@ function resumeCheck() {
 
     window.location.href = "resume.html";
 }
-
 // ----------------------------- resume ended ----------------------------
 
 
