@@ -633,7 +633,7 @@ async function templates(e) {
         console.log(res.data.getDataRes[0]);
         console.log(res.data.getDataRes);
 
-        
+
 
     }
     catch (error) {
@@ -641,6 +641,35 @@ async function templates(e) {
         console.error("Error saving resume:", error);
     }
 }
+
+
+async function analyzeJob() {
+    const resumeFile = document.getElementById('resumeUpload').files[0];
+    const jobDesc = document.getElementById('jobDescription').value;
+
+    if (!resumeFile || !jobDesc) {
+        alert("Please upload a resume and enter a job description.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('resume', resumeFile);
+    formData.append('jobDescription', jobDesc);
+
+    try {
+        const response = await axios.post("http://localhost:3000/api/saveResume",
+
+            { formData }
+        );
+
+        const result = await response.json();
+        document.getElementById('results').innerText = JSON.stringify(result, null, 2);
+    } catch (error) {
+        console.error('Error analyzing job:', error);
+        document.getElementById('results').innerText = 'An error occurred during analysis.';
+    }
+}
+
 
 // ----------------------------- resume ended ----------------------------
 
