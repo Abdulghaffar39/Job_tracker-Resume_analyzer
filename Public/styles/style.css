@@ -3,11 +3,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid black;
 }
 
 body {
-
+    border: 4px dotted black;
     font-size: 62.4%;
     background-color: rgb(233, 227, 227);
     color: var(--color-white);
@@ -36,15 +35,19 @@ header .parnet_1 img {
 
 header .parnet_2 {
 
-    width: 140px;
-    height: 50px;
+    width: auto;
     border-radius: 10px;
+    
+    display: flex;
+    gap: 20px;
+    border: 1px solid black;
+    
 }
 
 header .parnet_2 button {
 
-    width: 100%;
-    height: 100%;
+    width: 140px;
+    height: 50px;
     font-size: 18px;
     font-weight: 600;
     color: gainsboro;
@@ -730,9 +733,10 @@ textarea:hover {
 .resume .container_1 {
 
     width: 70%;
-    height: 150px;
+    height: 100%;
     color: black;
     margin: 30px auto;
+    padding: 60px 0px;
     border-radius: 16px;
     background-color: rgb(245, 243, 243);
 
@@ -740,6 +744,7 @@ textarea:hover {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    gap: 50px;
 }
 
 .resume .container_1 .title_1 {
@@ -749,48 +754,117 @@ textarea:hover {
 
 .resume .container_1 .parent_1 {
 
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.file {
+
+    width: 100%;
+    height: 150px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #c3bf73;
+}
+
+.file i,
+.file span {
+
+    font-size: 25px;
+}
+
+.file input[type="file"] {
+    display: none;
+}
+
+.file label {
+
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 3px dashed #625e22;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+}
+
+.file label:hover {
+
+    font-size: 22px !important;
+    transition: 0.4s all;
+    background-color: #d9d69d;
+    border: 3px dashed #060606;
+    box-shadow: 4px 4px 4px black;
+}
+
+.description {
+
+    width: 100%;
+    height: 100%;
+}
+
+.description textarea {
+
+    width: 100%;
+    height: 100%;
+    outline: none;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    background-color: rgb(255, 255, 255);
+}
+
+.description textarea:hover {
+
+    transition: 0.6s all;
+    background-color: rgb(237, 237, 237);
+}
+
+.buttonBox {
+
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+    background-color: black;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.resume .container_1 .parent_1 button {
+.buttonBox button {
 
-    width: 140px;
-    height: 30px;
+    width: 100%;
+    height: 100%;
+
+    border: none;
     color: white;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: 600;
-    border-style: none;
+    border-radius: 10px;
     transition: 0.8s all;
-    border-radius: 0px 4px 4px 0px;
     background-color: rgb(16, 16, 16);
+
 }
 
-.resume .container_1 .parent_1 button:hover {
+.buttonBox button:hover {
 
     color: black;
-    font-size: 14px;
     border: 1px solid black;
-    background-color: white;
-
-    border-left: none;
+    background-color: rgb(251, 249, 249);
 }
 
-.resume .container_1 .parent_1 input {
-
-    width: auto;
-    height: 30px;
-    padding: 4px;
-    color: black;
-    border-radius: 4px 0px 0px 4px;
-    background-color: rgb(201, 201, 201);
-}
-
-.resume .container_1 input:hover {
-
-    background-color: rgb(172, 170, 170);
-}
 
 .checkResult {
 
@@ -845,6 +919,24 @@ textarea:hover {
     justify-content: space-around;
     align-items: start;
     gap: 10px;
+}
+
+.checkResult .parent_2 div {
+
+    width: 100%;
+    color: black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: start;
+    gap: 10px;
+}
+
+.checkResult .parent_2 div div {
+
+    display: flex;
+    flex-direction: column;
 }
 
 .checkResult .parent_2 h3,
@@ -1254,19 +1346,19 @@ textarea:hover {
 }
 
 .template .container_4 {
-    
+
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
 .template .container_4 .parent_1 {
-    
+
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 6px;
-    
+
 }
 
 .template .container_4 .parent_1 img {
@@ -1293,12 +1385,12 @@ textarea:hover {
 }
 
 .template .container_4 .parent_3 h6 {
-    
+
     font-size: 14px;
 }
 
 .template .container_4 .parent_3 div {
-    
+
     display: flex;
     justify-content: space-between;
 }
@@ -1311,11 +1403,11 @@ textarea:hover {
 }
 
 .template .container_4 .parent_3 ul {
-    
+
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
+
     list-style: none;
     padding-left: 20px;
 }
@@ -1328,7 +1420,7 @@ textarea:hover {
 }
 
 .template .container_4 .parent_3 ul li::before {
-    
+
     left: 8px;
     content: "•";
     position: absolute;
@@ -1336,7 +1428,7 @@ textarea:hover {
 
 
 .template .container_5 {
-    
+
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -1357,7 +1449,7 @@ textarea:hover {
 }
 
 .template .container_5 .parent_1 h5 {
-    
+
     font-size: 18px;
     text-transform: uppercase;
 }
@@ -1375,7 +1467,7 @@ textarea:hover {
 }
 
 .template .container_5 .parent_3 .child_1,
-.template .container_5 .parent_3 .child_2{
+.template .container_5 .parent_3 .child_2 {
 
     display: flex;
     flex-direction: column;
@@ -1407,7 +1499,9 @@ textarea:hover {
     font-weight: 600;
 }
 
-*{border: none;}
+* {
+    border: none;
+}
 
 
 /* ---------------------------------- template ended ------------------------- */
@@ -1579,8 +1673,7 @@ textarea:hover {
 
     .resume .container_1 .parent_1 button {
 
-        width: 120px;
-        font-size: 12px;
+        width: 100%;
     }
 
     .checkResult .parent_1 {
@@ -1756,20 +1849,25 @@ textarea:hover {
 
     /* ---------------------------------- Resume started ------------------------- */
 
+
     .resume .container_1 {
 
-        height: 200px;
+        height: 100%;
 
         display: flex;
         flex-direction: column;
         gap: 40px;
     }
 
-    .resume .container_1 .parent_1 {
+    .file i,
+    .file span {
 
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+        font-size: 18px;
+    }
+
+    .description textarea{
+
+        font-size: 18px;
     }
 
     /* ---------------------------------- resume ended ------------------------- */

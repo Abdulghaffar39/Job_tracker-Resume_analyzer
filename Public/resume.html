@@ -39,19 +39,31 @@
 
             <div class="parent_1">
 
-                <input type="file" id="fileResume" accept="application/pdf" class="input_1">
-                <button onclick="resume()">Upload & Analyze</button>
+                <div class="file">
+                    <label for="fileResume">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Upload Resume (PDF)</span>
+                        <input type="file" id="fileResume" accept="application/pdf" class="input_1">
+                    </label>
+
+                </div>
+
+                <div class="description">
+
+                    <textarea name="jobDescription" placeholder="Enter Job Description" rows="25" id="jobDes"></textarea>
+
+                </div>
+                
+
+                <div class="buttonBox">
+
+                    <button onclick="resume()">Upload & Analyze</button>
+
+                </div>
+                
+                
 
             </div>
-
-            <!-- <div id="resultBox" class="result_1 hidden">
-                <h3 class="sub_1">AI Analysis Result</h3>
-
-                <pre id="analysisOutput" class="output_1"></pre>
-
-                <h3 class="sub_1">Extracted Text</h3>
-                <pre id="textOutput" class="output_1"></pre>
-            </div> -->
 
 
         </div>
@@ -71,8 +83,18 @@
 
             <div class="parent_2">
 
-                <h3>Missing Skills:</h3>
-                <ul id="skillsList"></ul>
+
+                <div>
+                    <div class="child_1">
+                        <h3>Missing Skills:</h3>
+                        <ul id="missSkills"></ul>
+                    </div>
+
+                    <div class="child_1">
+                        <h3>Recommended Skills ToAdd:</h3>
+                        <ul id="requireSkills"></ul>
+                    </div>
+                </div>
 
             </div>
 
@@ -102,10 +124,6 @@
 
     </div>
 
-    <input type="file" id="resumeUpload" accept=".pdf">
-    <textarea id="jobDescription" placeholder="Paste job description here..."></textarea>
-    <button onclick="analyzeJob()">Analyze</button>
-    <div id="results"></div>
 
     <script src="https://kit.fontawesome.com/1de706ad7b.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>

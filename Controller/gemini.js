@@ -1,10 +1,6 @@
-const uploads = multer({ storage: multer.memoryStorage() });
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
 const pdfjsLib = require("pdfjs-dist/legacy/build/pdf.js");
 const { GoogleGenAI } = require("@google/genai");
 const saveResumes = require("../db/resume");
-const multer = require("multer")
 const pdf = require("pdf-parse")
 
 require("dotenv").config();
@@ -18,6 +14,16 @@ async function upload(req, res) {
 
   try {
     // 1️⃣ Extract text from PDF
+    const jobDescription = req.body.jobDescription;
+
+    if (!jobDescription) {
+
+      return res.status(400).send({
+        success: false,
+        message: "Job description is required"
+      });
+    }
+
     const data = new Uint8Array(req.files.file.data);
     const pdf = await pdfjsLib.getDocument({ data }).promise;
 
@@ -36,16 +42,41 @@ async function upload(req, res) {
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
     const prompt = `
-        You are an AI resume expert.
-        Analyze the resume text below and return JSON with:
-        1. Resume Score (out of 100)
-        2. ATS Score
-        3. Missing Skills
-        4. Suggestions
-        5. Improved Resume Text
+      You are a specialized AI resume analyst and ATS optimization expert.
 
-        Resume:
-        ${text}`;
+      Your task is to analyze the RESUME text and, if a JOB DESCRIPTION is provided, evaluate how well the resume matches the role from both a recruiter and ATS perspective.
+
+STRICT INSTRUCTIONS:
+    - Return ONLY valid JSON
+      - Do NOT include markdown, explanations, or extra text
+        - All numeric scores must be integers between 0 and 100
+          - Suggestions must be practical, specific, and actionable
+            - Recommended skills must be relevant to the job description
+              - Improved resume text must be fully optimized, professional, and ATS - friendly
+
+Return JSON strictly in the following structure:
+
+    {
+      "resumeScore": number,
+        "atsScore": number,
+          "matchPercentage": number,
+
+            "missingSkills": [],
+              "recommendedSkillsToAdd": [],
+
+                "suggestions": [],
+
+                  "improvedResumeText": "Provide a complete, polished, ATS-optimized resume rewritten from scratch and tailored specifically to the job description. Improve structure, keywords, clarity, impact, and formatting while keeping all information truthful."
+    }
+
+JOB DESCRIPTION:
+${jobDescription}
+
+RESUME TEXT:
+${text}
+    `;
+
+
 
     const result = await ai.models.generateContent({
 
@@ -56,14 +87,32 @@ async function upload(req, res) {
     const aiText = result?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "No AI response";
 
     // 3️⃣ Send AI response to client
-    res.send({ success: true, extractedText: text, aiAnalysis: aiText });
+    res.send({
+      success: true,
+      aiAnalysis: aiText
+    });
+
 
   } catch (err) {
-    console.error(err);
-    res.status(500).send({ success: false, message: "Error processing PDF or AI", details: err.message });
-  }
-};
 
+    // Check if the error is quota / limit exceeded
+    if (err?.status === "RESOURCE_EXHAUSTED" || err?.code === 429) {
+      return res.status(429).send({
+        success: false,
+        message: "Your API quota for Gemini AI has been exhausted. Please wait for quota reset or upgrade your plan.",
+        retryAfter: err?.details?.[2]?.retryDelay || "unknown" // optional: shows suggested retry time
+      });
+    }
+
+    // Generic server error
+    console.error(err);
+    res.status(500).send({
+      success: false,
+      message: "Server error while processing your request",
+      details: err.message
+    });
+  }
+}
 
 
 async function saveResume(req, res) {
@@ -122,45 +171,4 @@ async function getResumeData(req, res) {
 
 
 
-
-// Serve the frontend files
-async function analyze(req, res) {
-
-  try {
-    // 1. Extract text from PDF
-    const dataBuffer = req.file.buffer;
-    const pdfData = await pdf(dataBuffer);
-    const resumeText = pdfData.text;
-    const jobDescription = req.body.jobDescription;
-
-
-    // 2. Formulate prompt for Gemini
-    const prompt = `Analyze the following resume and job description.
-        Resume: "${resumeText.substring(0, 2000)}..." // Truncate for brevity, use full text in real app
-        Job Description: "${jobDescription.substring(0, 2000)}..."
-
-        Provide a match analysis including:
-        - A match percentage (0-100).
-        - Key matching skills.
-        - Missing skills or gaps.
-        - Suggestions for improvement.
-        Format the output as a JSON object.`;
-
-    // 3. Call Gemini API
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash', // A capable and fast model
-      contents: [prompt],
-    });
-
-    const rawText = response.text;
-    // Assuming Gemini returns a valid JSON string, parse it
-    const analysisResult = JSON.parse(rawText);
-    res.json(analysisResult);
-
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error during analysis.' });
-  }
-}
-
-module.exports = { upload, saveResume, getResumeData, analyze }
+module.exports = { upload, saveResume, getResumeData }

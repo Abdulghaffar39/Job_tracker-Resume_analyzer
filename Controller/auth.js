@@ -132,7 +132,6 @@ async function login(req, res) {
     }
 }
 
-
 async function home(req, res) {
 
     const { user } = req;
@@ -159,5 +158,42 @@ async function home(req, res) {
     }
 }
 
+async function dashboard(req, res) {
 
-module.exports = { signUp, login, home }
+    try {
+
+        const email = req.email;
+
+        const getUserData = await userValue({ email }).sort({ createdAt: -1 });
+
+
+        let token = jwt.sign(
+
+            {
+                getUserData
+            },
+            process.env.JWTSECRETKEY,
+            { expiresIn: "1d" }
+        );
+
+        return res.send({
+
+            token,
+            status: 200,
+            message: "Successfully Work"
+        })
+
+
+    }
+    catch (err) {
+
+        return res.send({
+
+            status: 500,
+            message: `Sorry! Server is not responding ${err}`
+        })
+    }
+}
+
+
+module.exports = { signUp, login, home, dashboard }

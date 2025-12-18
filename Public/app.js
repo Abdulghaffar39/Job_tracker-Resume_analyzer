@@ -1,4 +1,5 @@
 const { json } = require("body-parser");
+const { parse } = require("cli");
 
 // ----------------------------- SignUp started ----------------------------
 async function signUp(e) {
@@ -512,46 +513,36 @@ document.querySelector(".checkResult").style.display = "block";
 async function resume() {
 
     let fileInput = document.getElementById("fileResume");
+    let jobDes = document.getElementById("jobDes");
 
     if (!fileInput.files.length) {
         alert("Please select a PDF file");
         return;
     }
 
-    // 1️⃣ FormData banaye
     const formData = new FormData();
-    formData.append("file", fileInput.files[0]); // PDF file
+    formData.append("file", fileInput.files[0]);
+    formData.append("jobDescription", jobDes.value);
 
     try {
-        // 2️⃣ Axios POST request
         const res = await axios.post("http://localhost:3000/api/upload", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data", // browser automatically set karta hai, par explicitly bhi chalega
-            },
+            headers: { "Content-Type": "multipart/form-data" },
         });
 
-        alert("Upload successful! Check console for AI result.");
-
-
-        // 🔥 Ye line result section ko show karegi
         document.querySelector(".checkResult").style.display = "block";
 
         let data = res.data.aiAnalysis;
-
-        // clean & parse JSON
         let clean = data.replace(/```json|```/g, "").trim();
         let parsed = JSON.parse(clean);
 
-        console.log(parsed + "line 556");
-        // Resume Score
-        document.getElementById("resumeScore").innerText = parsed["Resume Score"];
-        document.getElementById("atsScore").innerText = parsed["ATS Score"];
+        // Score Boxes
+        document.getElementById("resumeScore").innerText = parsed["resumeScore"];
+        document.getElementById("atsScore").innerText = parsed["atsScore"];
 
         // Missing Skills
         const skillsList = document.getElementById("skillsList");
         skillsList.innerHTML = "";
-        parsed["Missing Skills"].forEach(skill => {
-            skill = skill.replace(/\*/g, ""); // remove stars
+        parsed["missingSkills"].forEach(skill => {
             const li = document.createElement("li");
             li.textContent = skill;
             skillsList.appendChild(li);
@@ -560,26 +551,21 @@ async function resume() {
         // Suggestions
         const suggestionsContainer = document.getElementById("suggestionsContainer");
         suggestionsContainer.innerHTML = "";
-        parsed["Suggestions"].forEach(txt => {
-            txt = txt.replace(/\*/g, "");
+        parsed["suggestions"].forEach(txt => {
             const div = document.createElement("div");
             div.style.padding = "10px";
             div.style.margin = "10px 0";
-            div.style.border = "1px solid #ddd";
             div.style.borderRadius = "8px";
-            div.innerHTML = txt;
+            div.innerText = txt;
             suggestionsContainer.appendChild(div);
         });
 
         // Improved Resume
-        const resumeContainer = document.getElementById("resumeContainer");
-        resumeContainer.innerHTML = "";
-
-        let resumeText = parsed["Improved Resume Text"];
+        const improvedResume = document.getElementById("resumeContainer");
+        improvedResume.innerHTML = "";
+        let resumeText = parsed["improvedResumeText"];
         let sections = resumeText.split('---');
-
         sections.forEach(section => {
-            section = section.replace(/\*/g, ""); // remove stars
             const div = document.createElement("div");
             div.style.border = "1px solid #ddd";
             div.style.padding = "12px";
@@ -587,9 +573,8 @@ async function resume() {
             div.style.borderRadius = "8px";
             div.style.whiteSpace = "pre-wrap";
             div.innerText = section.trim();
-            resumeContainer.appendChild(div);
+            improvedResume.appendChild(div);
         });
-
 
     } catch (err) {
         console.error("Upload error:", err);
@@ -643,34 +628,6 @@ async function templates(e) {
 }
 
 
-async function analyzeJob() {
-    const resumeFile = document.getElementById('resumeUpload').files[0];
-    const jobDesc = document.getElementById('jobDescription').value;
-
-    if (!resumeFile || !jobDesc) {
-        alert("Please upload a resume and enter a job description.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('resume', resumeFile);
-    formData.append('jobDescription', jobDesc);
-
-    try {
-        const response = await axios.post("http://localhost:3000/api/saveResume",
-
-            { formData }
-        );
-
-        const result = await response.json();
-        document.getElementById('results').innerText = JSON.stringify(result, null, 2);
-    } catch (error) {
-        console.error('Error analyzing job:', error);
-        document.getElementById('results').innerText = 'An error occurred during analysis.';
-    }
-}
-
-
 // ----------------------------- resume ended ----------------------------
 
 
@@ -683,7 +640,24 @@ function resumeCheck() {
 
     window.location.href = "resume.html";
 }
+
 // ----------------------------- resume ended ----------------------------
+
+
+// ----------------------------- Dashboard started ----------------------------
+
+async function getDashboardData() {
+
+    const token = localStorage.getItem("token"); // JWT from login
+    const res = await axios.get("http://localhost:3000/api/dashboard", {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+
+    console.log(res);
+    
+}
+
+// ----------------------------- Dashboard ended ----------------------------
 
 
 function goLogin(e) {
@@ -716,6 +690,11 @@ function postJob(e) {
 
     window.location.href = "postJob.html"
 
+}
+
+function dashboard() {
+
+    window.location.href = "dashboard.html"
 }
 
 function findJob(e) {
