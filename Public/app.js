@@ -1,10 +1,11 @@
-const { json } = require("body-parser");
-const { parse } = require("cli");
+// const { json } = require("body-parser");
+// const { parse } = require("cli");
 
 // ----------------------------- SignUp started ----------------------------
 async function signUp(e) {
 
     try {
+
         e.preventDefault();
 
         let fullName = document.getElementById("fullName").value;
@@ -58,44 +59,29 @@ async function signUp(e) {
 
 
 // ----------------------------- Login started ----------------------------
-async function login(e) {
+
+async function handleFormSubmit(e) {
+
+    e.preventDefault()
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if (email === "" || password === "") {
+        alert("⚠️ Please fill in all fields before submitting!");
+        return;
+    }
 
     try {
-        e.preventDefault();
 
-        let email = document.getElementById("email").value;
-        let password = document.getElementById("password").value;
+        const res = await axios.post("http://localhost:3000/api/login", {
+            email,
+            password
+        });
 
-        if (email === "" || password === "") {
+        const data = res.data;
+        console.log("LOGIN RESPONSE:", data);
 
-            alert("⚠️ Please fill in all fields before submitting!");
-            return;
-
-        } else if (email.indexOf("@gmail.com") === -1) {
-
-            alert("Please enter a valid email address!");
-            return;
-
-        }
-
-
-        const res = await axios.post("http://localhost:3000/api/login",
-
-            { email, password }
-
-        )
-
-        let data = res.data;
-        console.log(data);
-
-        if (data.status === 404) {
-
-            alert(data.message);
-            return;
-        }
-
-        if (data.status === 401) {
-
+        if (data.status === 404 || data.status === 401) {
             alert(data.message);
             return;
         }
@@ -103,17 +89,16 @@ async function login(e) {
         if (data.status === 200) {
 
             alert(data.message);
+            localStorage.setItem("token", data.token);
+            console.log("Token saved:", localStorage.getItem("token"));
             window.location.href = "home.html";
-            return;
         }
 
 
-    }
-    catch (err) {
+    } catch (err) {
 
         console.log(err);
-        alert("Not working")
-
+        alert("Not working");
     }
 
 
@@ -124,28 +109,33 @@ async function login(e) {
 // ----------------------------- Home stared ----------------------------
 async function home(e) {
 
+    e.preventDefault();
+
     try {
-        e.preventDefault();
+        // ✅ 1. Token ko pehle get karo
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("Token missing! Please login again.");
+            window.location.href = "login.html";
+            return;
+        }
+        console.log("Token:", token);
 
-        const res = await axios.post("http://localhost:3000/api/login",
-
-            { withCredentials: true }
-
-        )
+        // ✅ 2. Axios request me token bhejo
+        const res = await axios.post("http://localhost:3000/api/home",
+            { withCredentials: true },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
 
         let data = res.data;
-        console.log(data);
+        console.log("Home data:", data);
 
-    }
-    catch (err) {
-
+    } catch (err) {
         console.log(err);
         alert("Not working")
-
     }
-
-
 }
+
 // ----------------------------- Home ended ----------------------------
 
 
@@ -190,14 +180,18 @@ async function conti(e) {
             return;
         }
 
+        const token = localStorage.getItem("token")
 
-        const res = await axios.post("http://localhost:3000/api/company", {
+        const res = await axios.post("http://localhost:3000/api/company",
 
-            company,
-            fName,
-            lName,
-            number
-        });
+            {
+                company,
+                fName,
+                lName,
+                number,
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
 
 
         if (res.status === 200) {
@@ -259,16 +253,22 @@ async function addJobConfirm(e) {
             return;
         }
 
-        const res = await axios.post("http://localhost:3000/api/jobData", {
+        const token = localStorage.getItem("token");
 
-            jobTilte,
-            jobLocation,
-            jobTimeline,
-            jobType,
-            quantityInput,
-            jobPay,
-            description
-        });
+        const res = await axios.post("http://localhost:3000/api/jobData",
+
+            {
+                jobTilte,
+                jobLocation,
+                jobTimeline,
+                jobType,
+                quantityInput,
+                jobPay,
+                description
+            },
+
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
 
 
         if (res.status === 200) {
@@ -333,19 +333,28 @@ async function jobFinder(e) {
 
         let findJob = document.getElementById("findJob");
 
-        const res1 = await axios.get("http://localhost:3000/api/companiesData", {
+        const token = localStorage.getItem("token");
 
-            company,
-            fName,
-            lName,
-            number
-        });
+        console.log(token);
 
 
-        const res2 = await axios.get("http://localhost:3000/api/jobDataPost", {
+        const res1 = await axios.get("http://localhost:3000/api/companiesData",
 
-            jobLocation,
-        });
+            {
+                company,
+                fName,
+                lName,
+                number
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+
+        const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
+
+            { jobLocation },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
 
         const response1 = res1.data.data;
         const response2 = res2.data.jobPost;
@@ -378,14 +387,6 @@ async function jobFinder(e) {
 
             }
         }
-
-
-        // if (res.status === 200) {
-
-
-        //     alert("Working successfully!");
-
-        // }
 
     } catch (err) {
         console.log("Error:", err);
@@ -429,25 +430,31 @@ async function newJobDetais(e) {
         let descrip = document.getElementById("newJobDesPara");
 
 
-        const res1 = await axios.get("http://localhost:3000/api/companiesData", {
+        const res1 = await axios.get("http://localhost:3000/api/companiesData",
 
-            company,
-            fName,
-            lName,
-            number
-        });
+            {
+                company,
+                fName,
+                lName,
+                number
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
 
-        const res2 = await axios.get("http://localhost:3000/api/jobDataPost", {
+        const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
 
-            jobTilte,
-            jobLocation,
-            jobTimeline,
-            jobType,
-            jobPay,
-            quantityInput,
-            description,
+            {
+                jobTilte,
+                jobLocation,
+                jobTimeline,
+                jobType,
+                jobPay,
+                quantityInput,
+                description
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
 
-        });
+        );
 
         const data1 = res1.data.data;
         const data2 = res2.data.jobPost;
@@ -588,11 +595,22 @@ async function saveCVData() {
 
     let resumeText = document.getElementById("resumeContainer").innerText;
 
+    if (!resumeText) {
+        alert("⚠️ Resume is empty!");
+        return;
+    }
+
+    const token = localStorage.getItem("token");
+
+
+
     try {
 
         const response = await axios.post("http://localhost:3000/api/saveResume",
 
-            { resumeText }
+            { resumeText },
+            { headers: { Authorization: `Bearer ${token}` } }
+
         );
 
         console.log(response.data.details);
@@ -613,7 +631,12 @@ async function templates(e) {
 
     try {
 
-        const res = await axios.get("http://localhost:3000/api/getResumeData");
+        const res = await axios.get("http://localhost:3000/api/getResumeData", {
+
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
 
         console.log(res.data.getDataRes[0]);
         console.log(res.data.getDataRes);
@@ -646,15 +669,85 @@ function resumeCheck() {
 
 // ----------------------------- Dashboard started ----------------------------
 
-async function getDashboardData() {
 
-    const token = localStorage.getItem("token"); // JWT from login
-    const res = await axios.get("http://localhost:3000/api/dashboard", {
-        headers: { Authorization: `Bearer ${token}` }
-    });
 
-    console.log(res);
+async function getDashboardData(e) {
+
+    e.preventDefault();
+
+    try {
+
+        const token = localStorage.getItem("token");
+
+        console.log("Token from localStorage:", token);
+
+        if (!token) {
+            console.log("❌ Token nahi mila");
+            return;
+        }
+
+        const res = await axios.get("http://localhost:3000/api/dashboard", {
+
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        const res2 = await axios.get("http://localhost:3000/api/companiesData",
+
+            {
+                company,
+                fName,
+                lName,
+                number
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        const res3 = await axios.get("http://localhost:3000/api/jobDataPost",
+
+            {
+                jobTilte,
+                jobLocation,
+                jobTimeline,
+                jobType,
+                jobPay,
+                quantityInput,
+                description
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if (values) {
+
+            console.log(values);
+            for (let i = 0; i < values; i++) {
+
+
+                findJob.innerHTML += `<div class="container_1">
     
+                    <div class="parent_1" onclick="newJobData()">
+    
+                        <div class="child_1">
+                            <h1 id="findJob_head">${response1[i].company}</h1>
+                        </div>
+    
+                        <div class="child_2">
+                            <p id="findJob_paraOne">${response1[i].fName + " " + response1[i].lName}</p>
+                            <p id="findJob_paraTwo">${response2[i].jobLocation}</p>
+                        </div>
+    
+                    </div>
+    
+                </div>`
+
+            }
+        }
+
+    } catch (err) {
+        console.log("Error:", err);
+    }
+
 }
 
 // ----------------------------- Dashboard ended ----------------------------

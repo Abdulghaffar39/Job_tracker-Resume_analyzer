@@ -4,9 +4,10 @@ async function jobData(req, res) {
 
     try {
 
+        const email = req.user.email;
         const { jobTilte, jobLocation, jobTimeline, jobType, jobPay, quantityInput, description } = req.body;
 
-        const jobData = { jobTilte, jobLocation, jobTimeline, jobType, jobPay, quantityInput, description }
+        const jobData = { email, jobTilte, jobLocation, jobTimeline, jobType, jobPay, quantityInput, description }
 
         const response = await new job(jobData).save();
         console.log(response);
@@ -35,13 +36,12 @@ async function jobDataPost(req, res) {
 
     try {
 
-        const jobPost = await job.find();
-
+        const email = req.user.email;
+        const jobPost = await job.find({ email });
         console.log(jobPost);
-        
-        
+
         res.status(200).send({
-            
+
             jobPost,
             success: true,
             message: "find all data"

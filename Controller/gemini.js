@@ -13,7 +13,8 @@ async function upload(req, res) {
   }
 
   try {
-    // 1️⃣ Extract text from PDF
+
+    const email = req.user.email;
     const jobDescription = req.body.jobDescription;
 
     if (!jobDescription) {
@@ -76,8 +77,6 @@ RESUME TEXT:
 ${text}
     `;
 
-
-
     const result = await ai.models.generateContent({
 
       model: "gemini-2.5-flash",
@@ -119,9 +118,10 @@ async function saveResume(req, res) {
 
   try {
 
+    const email = req.user.email;
     const { resumeText } = req.body;
 
-    let response = await new saveResumes({ resumeText }).save();
+    let response = await new saveResumes({ email, resumeText }).save();
     console.log(response);
 
 
@@ -145,7 +145,9 @@ async function getResumeData(req, res) {
 
   try {
 
-    let getDataRes = await saveResumes.find();
+    const email = req.user.email;
+
+    let getDataRes = await saveResumes.find({ email });
     console.log(getDataRes);
 
 

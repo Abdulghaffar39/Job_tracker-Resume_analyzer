@@ -6,11 +6,10 @@ async function companyDetails(req, res) {
 
     try {
 
+        const email = req.user.email;
         const { company, fName, lName, number } = req.body;
 
-
-        const result = await new compDetai({ company, fName, lName, number }).save();
-
+        const result = await new compDetai({ email, company, fName, lName, number }).save();
 
         return res.send({
 
@@ -37,8 +36,9 @@ async function companiesData(req, res) {
 
     try {
 
-        const companies = await compDetai.find();
-        
+        const email = req.user.email;
+        const companies = await compDetai.find({ email });
+
         res.status(200).send({
             success: true,
             data: companies
@@ -53,4 +53,4 @@ async function companiesData(req, res) {
 
 
 
-module.exports = { companyDetails , companiesData }
+module.exports = { companyDetails, companiesData }

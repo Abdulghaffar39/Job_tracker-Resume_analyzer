@@ -3,15 +3,13 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-// console.log("Secret key ", process.env.JWTSECRETKEY);
-
 const authrization = async (req, res, next) => {
 
     const header = req.header("Authorization");
+    console.log("Authorization Header:", req.headers.authorization);
     console.log("here is a header", header);
 
     if (!header) {
-
         return res.send({
 
             status: 401,
@@ -25,7 +23,6 @@ const authrization = async (req, res, next) => {
         jwt.verify(token, process.env.JWTSECRETKEY, (err, user) => {
 
             if (err) {
-
                 return res.send({
 
                     status: 403,
@@ -33,8 +30,7 @@ const authrization = async (req, res, next) => {
                 })
             }
 
-            req.user = user;
-            console.log(req.user);
+            req.user = decoded;
             next();
         });
 

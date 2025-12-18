@@ -4,26 +4,36 @@ const { Schema } = mongoose
 
 const company = new Schema({
 
-    company:{
+    email: {
+
+        type: String,
+        required: true
+    },
+    company: {
+        
+        type: String,
+        required: true,
+    },
+    fName: {
 
         type: String,
         required: true,
     },
-    fName:{
+    lName: {
 
         type: String,
         required: true,
     },
-    lName:{
-
+    number: {
+        
         type: String,
         required: true,
     },
-    number:{
-
-        type: String,
-        required: true,
-    }
+    createdAt: {
+      
+        type: Date,
+        default: Date.now
+    },
 
 })
 

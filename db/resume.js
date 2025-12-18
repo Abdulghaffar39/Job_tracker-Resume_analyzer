@@ -4,11 +4,21 @@ const { Schema } = mongoose
 
 const saveResume = new Schema({
 
-    resumeText: {
+    email: {
 
         type: String,
+        required: true
+    },
+    resumeText: {
+        
+        type: String,
         required: true,
-    }
+    },
+    createdAt: {
+        
+        type: Date,
+        default: Date.now
+    },
 })
 
 

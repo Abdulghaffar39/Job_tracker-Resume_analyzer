@@ -162,26 +162,20 @@ async function dashboard(req, res) {
 
     try {
 
-        const email = req.email;
+        const email = req.user.email
 
-        const getUserData = await userValue({ email }).sort({ createdAt: -1 });
-
-
-        let token = jwt.sign(
-
-            {
-                getUserData
-            },
-            process.env.JWTSECRETKEY,
-            { expiresIn: "1d" }
-        );
+        const companies = await companyDetails.find({ email });
+        const jobs = await jobSchema.find({ email });
+        const resumes = await saveResumes.find({ email });
 
         return res.send({
 
-            token,
             status: 200,
-            message: "Successfully Work"
-        })
+            message: "Successfully Work",
+            companies,
+            jobs,
+            resumes
+        });
 
 
     }
