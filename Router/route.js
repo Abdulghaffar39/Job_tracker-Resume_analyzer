@@ -12,8 +12,8 @@ router.post("/signUp", signUp);
 router.post("/login", login);
 router.post("/home", authrization, home);
 router.post("/upload", upload);
-router.post("/saveResume",authrization, saveResume);
-router.get("/getResumeData",authrization, getResumeData);
+router.post("/saveResume", saveResume);
+router.get("/getResumeData", getResumeData);
 router.get("/dashboard", authrization, dashboard);
 
 module.exports = router

@@ -14,7 +14,6 @@ async function upload(req, res) {
 
   try {
 
-    const email = req.user.email;
     const jobDescription = req.body.jobDescription;
 
     if (!jobDescription) {
@@ -118,10 +117,9 @@ async function saveResume(req, res) {
 
   try {
 
-    const email = req.user.email;
     const { resumeText } = req.body;
 
-    let response = await new saveResumes({ email, resumeText }).save();
+    let response = await new saveResumes({ resumeText }).save();
     console.log(response);
 
 
@@ -147,7 +145,7 @@ async function getResumeData(req, res) {
 
     const email = req.user.email;
 
-    let getDataRes = await saveResumes.find({ email });
+    let getDataRes = await saveResumes.find();
     console.log(getDataRes);
 
 
@@ -166,11 +164,5 @@ async function getResumeData(req, res) {
     res.status(500).send({ success: false, message: "Rsume not found", details: err.message });
   }
 };
-
-
-
-
-
-
 
 module.exports = { upload, saveResume, getResumeData }

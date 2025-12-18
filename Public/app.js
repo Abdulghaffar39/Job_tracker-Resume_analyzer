@@ -60,9 +60,10 @@ async function signUp(e) {
 
 // ----------------------------- Login started ----------------------------
 
-async function handleFormSubmit(e) {
+async function login(e) {
 
     e.preventDefault()
+
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
@@ -103,6 +104,7 @@ async function handleFormSubmit(e) {
 
 
 }
+
 // ----------------------------- Login ended ----------------------------
 
 
@@ -123,8 +125,7 @@ async function home(e) {
 
         // ✅ 2. Axios request me token bhejo
         const res = await axios.post("http://localhost:3000/api/home",
-            { withCredentials: true },
-            { headers: { Authorization: `Bearer ${token}` } }
+            { withCredentials: true }
         );
 
         let data = res.data;
@@ -180,8 +181,7 @@ async function conti(e) {
             return;
         }
 
-        const token = localStorage.getItem("token")
-
+        
         const res = await axios.post("http://localhost:3000/api/company",
 
             {
@@ -189,8 +189,7 @@ async function conti(e) {
                 fName,
                 lName,
                 number,
-            },
-            { headers: { Authorization: `Bearer ${token}` } }
+            }
         );
 
 
@@ -253,7 +252,7 @@ async function addJobConfirm(e) {
             return;
         }
 
-        const token = localStorage.getItem("token");
+        
 
         const res = await axios.post("http://localhost:3000/api/jobData",
 
@@ -333,9 +332,9 @@ async function jobFinder(e) {
 
         let findJob = document.getElementById("findJob");
 
-        const token = localStorage.getItem("token");
+        
 
-        console.log(token);
+        // console.log(token);
 
 
         const res1 = await axios.get("http://localhost:3000/api/companiesData",
@@ -345,15 +344,14 @@ async function jobFinder(e) {
                 fName,
                 lName,
                 number
-            },
-            { headers: { Authorization: `Bearer ${token}` } }
+            }
+
         );
 
 
         const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
 
             { jobLocation },
-            { headers: { Authorization: `Bearer ${token}` } }
         );
 
         const response1 = res1.data.data;
@@ -437,8 +435,7 @@ async function newJobDetais(e) {
                 fName,
                 lName,
                 number
-            },
-            { headers: { Authorization: `Bearer ${token}` } }
+            }
         );
 
         const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
@@ -451,8 +448,7 @@ async function newJobDetais(e) {
                 jobPay,
                 quantityInput,
                 description
-            },
-            { headers: { Authorization: `Bearer ${token}` } }
+            }
 
         );
 
@@ -600,16 +596,11 @@ async function saveCVData() {
         return;
     }
 
-    const token = localStorage.getItem("token");
-
-
-
     try {
 
         const response = await axios.post("http://localhost:3000/api/saveResume",
 
-            { resumeText },
-            { headers: { Authorization: `Bearer ${token}` } }
+            { resumeText }
 
         );
 
@@ -700,8 +691,7 @@ async function getDashboardData(e) {
                 fName,
                 lName,
                 number
-            },
-            { headers: { Authorization: `Bearer ${token}` } }
+            }
         );
 
         const res3 = await axios.get("http://localhost:3000/api/jobDataPost",
@@ -714,8 +704,7 @@ async function getDashboardData(e) {
                 jobPay,
                 quantityInput,
                 description
-            },
-            { headers: { Authorization: `Bearer ${token}` } }
+            }
         );
 
         if (values) {

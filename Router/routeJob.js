@@ -5,8 +5,8 @@ const authrization = require("../Middleware/authentication");
 
 const router = express.Router();
 
-router.post("/jobData", authrization, jobData);
-router.get("/jobDataPost", authrization, jobDataPost);
+router.post("/jobData", jobData);
+router.get("/jobDataPost", jobDataPost);
 
 
 module.exports = router

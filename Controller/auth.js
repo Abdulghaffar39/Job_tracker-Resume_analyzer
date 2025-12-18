@@ -177,6 +177,9 @@ async function dashboard(req, res) {
             resumes
         });
 
+        console.log(res);
+        
+
 
     }
     catch (err) {
