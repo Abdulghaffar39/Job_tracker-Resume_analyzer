@@ -28,6 +28,8 @@ app.use("/api", routeJob)
 
 
 
-app.listen(PORT, () => {
-    console.log(`Server is working successfuly on ${PORT}`);
-})
+// app.listen(PORT, () => {
+//     console.log(`Server is working successfuly on ${PORT}`);
+// })
+
+module.exports = app;
