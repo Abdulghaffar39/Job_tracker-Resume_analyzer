@@ -135,7 +135,7 @@ async function login(req, res) {
 async function home(req, res) {
 
     const { user } = req;
-    console.log(user, "this is line 139");
+    // console.log(user, "this is line 139");
 
     try {
 
@@ -177,7 +177,7 @@ async function dashboard(req, res) {
             resumes
         });
 
-        console.log(res);
+        // console.log(res);
         
 
 

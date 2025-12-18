@@ -518,6 +518,8 @@ async function resume() {
     let fileInput = document.getElementById("fileResume");
     let jobDes = document.getElementById("jobDes");
 
+    
+    
     if (!fileInput.files.length) {
         alert("Please select a PDF file");
         return;
@@ -532,23 +534,35 @@ async function resume() {
             headers: { "Content-Type": "multipart/form-data" },
         });
 
+        
+        
         document.querySelector(".checkResult").style.display = "block";
 
         let data = res.data.aiAnalysis;
         let clean = data.replace(/```json|```/g, "").trim();
         let parsed = JSON.parse(clean);
-
+        
+        console.log(parsed);
         // Score Boxes
         document.getElementById("resumeScore").innerText = parsed["resumeScore"];
         document.getElementById("atsScore").innerText = parsed["atsScore"];
 
         // Missing Skills
-        const skillsList = document.getElementById("skillsList");
+        const skillsList = document.getElementById("missSkills");
         skillsList.innerHTML = "";
         parsed["missingSkills"].forEach(skill => {
             const li = document.createElement("li");
             li.textContent = skill;
             skillsList.appendChild(li);
+        });
+
+        // require Skills
+        const requireSkills = document.getElementById("requireSkills");
+        requireSkills.innerHTML = "";
+        parsed["recommendedSkillsToAdd"].forEach(skill => {
+            const li = document.createElement("li");
+            li.textContent = skill;
+            requireSkills.appendChild(li);
         });
 
         // Suggestions
@@ -578,6 +592,8 @@ async function resume() {
             div.innerText = section.trim();
             improvedResume.appendChild(div);
         });
+        const objDiv = document.getElementById("checkResult");
+        objDiv.scrollTop = objDiv.scrollHeight;
 
     } catch (err) {
         console.error("Upload error:", err);
