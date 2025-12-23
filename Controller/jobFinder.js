@@ -9,11 +9,9 @@ async function jobData(req, res) {
         const jobData = { jobTilte, jobLocation, jobTimeline, jobType, jobPay, quantityInput, description }
 
         const response = await new job(jobData).save();
-        console.log(response);
 
         return res.send({
 
-            response,
             status: 200,
             message: `🎉 Thank you, ! Your details have been submitted successfully`
         })

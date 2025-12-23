@@ -4,11 +4,6 @@ const { Schema } = mongoose
 
 const company = new Schema({
 
-    email: {
-
-        type: String,
-        required: true
-    },
     company: {
         
         type: String,

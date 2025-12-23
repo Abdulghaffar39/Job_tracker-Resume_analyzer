@@ -4,11 +4,6 @@ const { Schema } = mongoose
 
 const jobs = new Schema({
 
-    email: {
-
-        type: String,
-        required: true
-    },
     jobTilte: {
         
         type: String,

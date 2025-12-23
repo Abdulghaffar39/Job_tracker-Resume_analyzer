@@ -15,9 +15,7 @@ async function companyDetails(req, res) {
             result,
             status: 200,
             message: "🎉 Thank you! Your details have been submitted successfully"
-        })
-
-
+        })        
 
     }
     catch (error) {
@@ -36,6 +34,9 @@ async function companiesData(req, res) {
     try {
 
         const companies = await compDetai.find();
+
+        console.log(companies);
+        
 
         res.status(200).send({
             success: true,

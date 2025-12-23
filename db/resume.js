@@ -3,12 +3,7 @@ const mongoose = require("mongoose")
 const { Schema } = mongoose
 
 const saveResume = new Schema({
-
-    email: {
-
-        type: String,
-        required: true
-    },
+    
     resumeText: {
         
         type: String,

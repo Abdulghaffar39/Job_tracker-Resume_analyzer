@@ -169,19 +169,13 @@ async function conti(e) {
         }
 
 
-        if (company.length <= 4 || fName.length <= 4 || lName.length <= 4) {
-
-            alert("The value provided is incomplete. Please correct it. at least 4 word!");
-            return;
-        }
-
         if (number.length <= 7 || number.length > 15) {
 
             alert("Please enter a valid phone number to continue.");
             return;
         }
 
-        
+
         const res = await axios.post("http://localhost:3000/api/company",
 
             {
@@ -191,6 +185,8 @@ async function conti(e) {
                 number,
             }
         );
+
+        console.log(res);
 
 
         if (res.status === 200) {
@@ -204,7 +200,6 @@ async function conti(e) {
 
         console.log(err);
         alert("Not working")
-
     }
 
 
@@ -242,7 +237,6 @@ async function addJobConfirm(e) {
 
             alert("⚠️ Please fill in all fields before submitting!");
             return;
-
         }
 
         if (jobLocation === 'Select' || jobTimeline === 'selectTime' || jobType === 'selectType' || quantityInput === "0" || jobPay === 'selectPay') {
@@ -252,7 +246,7 @@ async function addJobConfirm(e) {
             return;
         }
 
-        
+
 
         const res = await axios.post("http://localhost:3000/api/jobData",
 
@@ -264,9 +258,7 @@ async function addJobConfirm(e) {
                 quantityInput,
                 jobPay,
                 description
-            },
-
-            { headers: { Authorization: `Bearer ${token}` } }
+            }
         );
 
 
@@ -332,7 +324,7 @@ async function jobFinder(e) {
 
         let findJob = document.getElementById("findJob");
 
-        
+
 
         // console.log(token);
 
@@ -457,24 +449,20 @@ async function newJobDetais(e) {
         console.log(data1, data2);
 
 
+
         const values = Math.min(data1.length, data2.length);
 
         if (values) {
 
             for (let i = 0; i < values; i++) {
 
-                console.log(data2[i].description);
-                if (data1[i].company) {
-
-                    title.innerHTML = data2[i].jobTilte;
-                    location.innerHTML = data2[i].jobLocation;
-                    location2.innerHTML = data2[i].jobLocation;
-                    pay1.innerHTML = data2[i].jobPay;
-                    pay.innerHTML = data2[i].jobPay;
-                    typejob.innerHTML = data2[i].jobType;
-                    descrip.innerHTML = data2[i].description;
-
-                }
+                title.innerHTML = data2[i].jobTilte;
+                location.innerHTML = data2[i].jobLocation;
+                location2.innerHTML = data2[i].jobLocation;
+                pay1.innerHTML = data2[i].jobPay;
+                pay.innerHTML = data2[i].jobPay;
+                typejob.innerHTML = data2[i].jobType;
+                descrip.innerHTML = data2[i].description;
 
             }
         }
@@ -518,8 +506,8 @@ async function resume() {
     let fileInput = document.getElementById("fileResume");
     let jobDes = document.getElementById("jobDes");
 
-    
-    
+
+
     if (!fileInput.files.length) {
         alert("Please select a PDF file");
         return;
@@ -534,14 +522,14 @@ async function resume() {
             headers: { "Content-Type": "multipart/form-data" },
         });
 
-        
-        
+
+
         document.querySelector(".checkResult").style.display = "block";
 
         let data = res.data.aiAnalysis;
         let clean = data.replace(/```json|```/g, "").trim();
         let parsed = JSON.parse(clean);
-        
+
         console.log(parsed);
         // Score Boxes
         document.getElementById("resumeScore").innerText = parsed["resumeScore"];
@@ -638,12 +626,7 @@ async function templates(e) {
 
     try {
 
-        const res = await axios.get("http://localhost:3000/api/getResumeData", {
-
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+        const res = await axios.get("http://localhost:3000/api/getResumeData")
 
         console.log(res.data.getDataRes[0]);
         console.log(res.data.getDataRes);
@@ -693,12 +676,7 @@ async function getDashboardData(e) {
             return;
         }
 
-        const res = await axios.get("http://localhost:3000/api/dashboard", {
-
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const res = await axios.get("http://localhost:3000/api/dashboard");
 
         const res2 = await axios.get("http://localhost:3000/api/companiesData",
 
