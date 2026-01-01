@@ -13,57 +13,34 @@
 
 <body>
 
-
-    <header>
-
-        <div class="parnet_1">
-
+    <header class="site-header">
+        <div class="header-left">
             <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
         </div>
 
-        <div class="parnet_2" onclick="logout(event)">
-
-            <button>Log Out</button>
-
+        <div class="header-right">
+            <button class="back-btn" onclick="logout(event)">Logout</button>
         </div>
-
     </header>
 
-
     <main class="home">
+        <section class="home-card">
+            <h1>Hire Talent, Build Your Team</h1>
+            <p>
+                Find and hire top professionals from around the world.
+                Post your job and connect with skilled candidates instantly.
+            </p>
+            <button class="primary-btn" onclick="postJob(event)">Post a Job</button>
+        </section>
 
-        <div class="container_1">
-
-            <div class="parent_1">
-
-
-                <h1>Hire Talents Build Your Team</h1>
-                <p>Find and hire the best talent from around the world. Post your job requirements and connect with
-                    skilled
-                    professionals ready to join your team.</p>
-            </div>
-
-            <div class="parent_2" onclick="postJob(event)">
-                <button>Post a job</button>
-            </div>
-
-        </div>
-
-        <div class="container_1">
-
-            <div class="parent_1">
-
-                <h1>Apply Prepare Your Future</h1>
-                <p>It connects employers and job seekers, where employers provide opportunities and job seekers can search for and apply to their desired jobs.</p>
-
-            </div>
-
-            <div class="parent_2" onclick="findJob(event)">
-                <button>Find a job</button>
-            </div>
-
-        </div>
-
+        <section class="home-card">
+            <h1>Apply & Shape Your Future</h1>
+            <p>
+                Explore job opportunities, apply easily, and take the next
+                step toward your career growth.
+            </p>
+            <button class="secondary-btn" onclick="findJob(event)">Find a Job</button>
+        </section>
     </main>
 
 

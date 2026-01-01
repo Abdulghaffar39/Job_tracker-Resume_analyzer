@@ -17,20 +17,16 @@
 <body>
 
 
-    <header>
-
-        <div class="parnet_1">
-
+    <header class="site-header">
+        <div class="header-left">
             <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
         </div>
 
-        <div class="parnet_2">
-
-            <button onclick="dashboard()">Dashboard</button>
-            <button onclick="backPost(event)">Back</button>
-
+        <div class="header-right">
+            <button class="back-btn" onclick="backPost(event)">
+                ← Back
+            </button>
         </div>
-
     </header>
 
 
@@ -38,61 +34,121 @@
 
         <form>
 
+            <!-- EMPLOYER INFO -->
+            <h1>Create Employer Account</h1>
 
-            <div class="parent_1">
-
-                <h1>Create an employer account</h1>
-                <a href="findJob.html">I'm looking for a job
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-
+            <div class="group">
+                <label>Company Name *</label>
+                <input type="text" id="company" required>
             </div>
 
-            <div class="parent_2">
-
-
-                <label for="company">Company name <span>*</span> </label>
-                <input type="text" id="company">
-
-
-            </div>
-
-            <div class="parent_3">
-
-
-                <div class="child_1">
-                    <label for="fname">First name <span>*</span> </label>
-                    <input type="text" id="fName">
+            <div class="two-col">
+                <div class="group">
+                    <label>First Name *</label>
+                    <input type="text" id="fName" required>
                 </div>
-
-                <div class="child_2">
-                    <label for="lname">Last name <span>*</span> </label>
-                    <input type="text" id="lName">
+                <div class="group">
+                    <label>Last Name *</label>
+                    <input type="text" id="lName" required>
                 </div>
-
-
             </div>
 
-            <div class="parent_4">
-
-                <label for="num">Phone number</label>
-                <p>For account management communication. Not visible to job seekers.</p>
-                <input type="number" id="number" minlength="7">
-
+            <div class="group">
+                <label>Phone Number</label>
+                <input type="number" id="number">
             </div>
 
-            <div class="parent_5" onclick="conti(event)">
+            <hr>
 
-                <button>Continue
-                    <i class="fa-solid fa-arrow-right"></i>
-                </button>
+            <!-- JOB DETAILS -->
+            <h2>Job Details</h2>
 
+            <div class="group">
+                <label>Job Title *</label>
+                <input type="text" id="tilte" required>
             </div>
+
+            <div class="group">
+                <label>Job Location Type *</label>
+                <select id="jobLocation" required>
+                    <option disabled selected>Select</option>
+                    <option>On-site</option>
+                    <option>Remote</option>
+                    <option>Hybrid</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Job City *</label>
+                <input type="text" id="city" placeholder="Karachi, Lahore, Remote">
+            </div>
+
+            <div class="group">
+                <label>Experience Level *</label>
+                <select id="experience" required>
+                    <option disabled selected>Select</option>
+                    <option>Fresher</option>
+                    <option>1–3 Years</option>
+                    <option>3–5 Years</option>
+                    <option>5+ Years</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Job Type *</label>
+                <select id="jobType" required>
+                    <option disabled selected>Select</option>
+                    <option>Full-time</option>
+                    <option>Part-time</option>
+                    <option>Internship</option>
+                    <option>Contract</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Salary Range *</label>
+                <select id="jobPay" required>
+                    <option disabled selected>Select</option>
+                    <option>Unpaid</option>
+                    <option>20k – 40k</option>
+                    <option>40k – 80k</option>
+                    <option>80k+</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Skills Required *</label>
+                <input type="text" id="skills" placeholder="HTML, CSS, JavaScript">
+            </div>
+
+            <div class="group">
+                <label>Application Method *</label>
+                <select id="appliMethod" required>
+                    <option disabled selected>Select</option>
+                    <option>Apply on platform</option>
+                    <option>Email</option>
+                    <option>External Link</option>
+                </select>
+            </div>
+
+            <div class="group">
+                <label>Job Expiry Date *</label>
+                <input type="date" id="expiry" required>
+            </div>
+
+            <div class="group">
+                <label>Job Description *</label>
+                <textarea rows="6" id="description" placeholder="Describe responsibilities, requirements, benefits..."></textarea>
+            </div>
+
+            <button class="confirm" onclick="conti(event)">
+                Post Job <i class="fa-solid fa-arrow-right"></i>
+            </button>
 
         </form>
 
-
     </main>
+
 
     <script src="app.js"></script>
     <script src="https://kit.fontawesome.com/1de706ad7b.js" crossorigin="anonymous"></script>

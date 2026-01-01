@@ -1,54 +1,54 @@
-const job = require("../db/jobs")
+// const job = require("../db/jobs")
 
-async function jobData(req, res) {
+// async function jobData(req, res) {
 
-    try {
+//     try {
 
-        const { jobTilte, jobLocation, jobTimeline, jobType, jobPay, quantityInput, description } = req.body;
+//         const { jobTilte, jobLocation, jobTimeline, jobType, jobPay, quantityInput, description } = req.body;
 
-        const jobData = { jobTilte, jobLocation, jobTimeline, jobType, jobPay, quantityInput, description }
+//         const jobData = { jobTilte, jobLocation, jobTimeline, jobType, jobPay, quantityInput, description }
 
-        const response = await new job(jobData).save();
+//         const response = await new job(jobData).save();
 
-        return res.send({
+//         return res.send({
 
-            status: 200,
-            message: `🎉 Thank you, ! Your details have been submitted successfully`
-        })
+//             status: 200,
+//             message: `🎉 Thank you, ! Your details have been submitted successfully`
+//         })
 
-    }
-    catch (error) {
+//     }
+//     catch (error) {
 
-        return res.send({
+//         return res.send({
 
-            status: 500,
-            message: "Sorry! Server is not responding"
-        })
-    }
+//             status: 500,
+//             message: "Sorry! Server is not responding"
+//         })
+//     }
 
-}
-
-
-async function jobDataPost(req, res) {
-
-    try {
-
-        const jobPost = await job.find();
-        console.log(jobPost);
-
-        res.status(200).send({
-
-            jobPost,
-            success: true,
-            message: "find all data"
-        });
-
-    } catch (err) {
-
-        res.status(500).send({ message: "Server Error" });
-    }
-
-};
+// }
 
 
-module.exports = { jobData, jobDataPost }
+// async function jobDataPost(req, res) {
+
+//     try {
+
+//         const jobPost = await job.find();
+//         console.log(jobPost);
+
+//         res.status(200).send({
+
+//             jobPost,
+//             success: true,
+//             message: "find all data"
+//         });
+
+//     } catch (err) {
+
+//         res.status(500).send({ message: "Server Error" });
+//     }
+
+// };
+
+
+// module.exports = { jobData, jobDataPost }

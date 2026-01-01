@@ -164,9 +164,9 @@ async function dashboard(req, res) {
 
         const email = req.user.email
 
-        const companies = await companyDetails.find({ email });
-        const jobs = await jobSchema.find({ email });
-        const resumes = await saveResumes.find({ email });
+        // const companies = await companyDetails.find({ email });
+        // const jobs = await jobSchema.find({ email });
+        // const resumes = await saveResumes.find({ email });
 
         return res.send({
 

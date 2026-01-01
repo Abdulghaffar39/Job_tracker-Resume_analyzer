@@ -16,128 +16,101 @@
 <body onload="newJobDetais(event)">
 
 
-    <header>
-
-        <div class="parnet_1">
-
+    <header class="site-header">
+        <div class="header-left">
             <img src="../Assets/Images/download-removebg-preview.png" alt="logo">
         </div>
 
-        <div class="parnet_2" onclick="backFile(event)">
-
-            <button>Back</button>
-
+        <div class="header-right">
+            <button class="back-btn" onclick="backFile(event)">
+                ← Back
+            </button>
         </div>
-
     </header>
 
 
+
     <main class="newJobData">
-
         <div class="containerCont">
-
+            <!-- Top Info Card -->
             <div class="container_1">
-
                 <div class="parent_1">
-
-                    <h1 id="newJobHead"></h1>
-
+                    <h1 id="jobTitle">Frontend Developer</h1>
                 </div>
-
                 <div class="parent_2">
-
-                    <p id="newJobLocation"></p>
-                    <p id="newJobSalary1"></p>
-
+                    <p id="companyName">Tech Solutions</p>
+                    <p id="newJobLocation">Karachi, Remote</p>
+                    <p id="newJobSalary">40k – 80k</p>
                 </div>
-
             </div>
 
+            <!-- Detailed Job Info -->
             <div class="container_2">
-
                 <div class="parent_1">
-
-                    <h1 class="jobDetailsHead">Job Details</h1>
-
+                    <h1>Job Description</h1>
                 </div>
 
                 <div class="parent_2">
-
                     <div class="child_1">
-
-                        <i class="fa-solid fa-money-bill-wave"></i>
-                        <h4>Pay</h4>
-
+                        <h4>Experience:</h4>
                     </div>
-
                     <div class="child_2">
-
-                        <p id="newJobPayment"></p>
-
+                        <p id="jobExperience">1–3 Years</p>
                     </div>
-
                 </div>
 
                 <div class="parent_3">
-
-
                     <div class="child_1">
-
-                        <i class="fa-solid fa-briefcase"></i>
-                        <h4>Job Type</h4>
-
+                        <h4>Job Type:</h4>
                     </div>
-
                     <div class="child_2">
-
-                        <p id="newJobType"></p>
-
+                        <p id="jobType">Full-time</p>
                     </div>
-
-
                 </div>
 
                 <div class="parent_4">
-
                     <div class="child_1">
-
-                        <i class="fa-solid fa-location-dot"></i>
-                        <h4>Location</h4>
-
+                        <h4>Skills:</h4>
                     </div>
-
                     <div class="child_2">
-
-                        <p id="newJobLocation2"></p>
-
+                        <p id="jobSkills">HTML, CSS, JavaScript</p>
                     </div>
-
                 </div>
 
                 <div class="parent_5">
-
                     <div class="child_1">
-
-                        <h4 id="newJobDesHead">Full Job Description</h4>
-
-                        <p id="newJobDesPara"></p>
-
+                        <h4>Apply Method:</h4>
                     </div>
-
+                    <div class="child_2">
+                        <p id="jobApply">Apply on platform</p>
+                    </div>
                 </div>
 
-                <div class="parent_6" onclick="apply(event)">
-
-                    <button id="apply">Apply now</button>
-
+                <!-- Job Description Section -->
+                <div class="parent_7">
+                    <div class="child_1">
+                        <h4>Description:</h4>
+                    </div>
+                    <div class="child_2">
+                        <p id="jobDescription">
+                            We are looking for a talented Frontend Developer to join our team. Responsibilities include
+                            creating responsive web pages, collaborating with designers, and ensuring a smooth user
+                            experience. Knowledge of modern JS frameworks is a plus.
+                        </p>
+                    </div>
                 </div>
 
+                <div class="parent_6">
+                    <button>Apply</button>
+                </div>
             </div>
-
         </div>
-
     </main>
 
+    <div class="resumeCheck" onclick="resumeCheck()">
+        <h4>Resume Check</h4>
+        <img src="./images/download-removebg-preview (2).png" alt="">
+    </div>
 
     <script src="app.js"></script>
     <script src="https://kit.fontawesome.com/1de706ad7b.js" crossorigin="anonymous"></script>

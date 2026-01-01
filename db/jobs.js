@@ -1,52 +1,52 @@
-const mongoose = require("mongoose")
+// const mongoose = require("mongoose")
 
-const { Schema } = mongoose
+// const { Schema } = mongoose
 
-const jobs = new Schema({
+// const jobs = new Schema({
 
-    jobTilte: {
+//     jobTilte: {
         
-        type: String,
-        required: true,
-    },
-    jobLocation: {
+//         type: String,
+//         required: true,
+//     },
+//     jobLocation: {
         
-        type: String,
-        required: true,
-    },
-    jobTimeline: {
+//         type: String,
+//         required: true,
+//     },
+//     jobTimeline: {
         
-        type: String,
-        required: true,
-    },
-    jobType: {
+//         type: String,
+//         required: true,
+//     },
+//     jobType: {
         
-        type: String,
-        required: true,
-    },
-    jobPay: {
+//         type: String,
+//         required: true,
+//     },
+//     jobPay: {
         
-        type: String,
-        required: true,
-    },
-    quantityInput: {
+//         type: String,
+//         required: true,
+//     },
+//     quantityInput: {
         
-        type: String,
-        required: true,
-    },
-    description: {
+//         type: String,
+//         required: true,
+//     },
+//     description: {
         
-        type: String,
-        required: true,
-    },
-    createdAt: {
+//         type: String,
+//         required: true,
+//     },
+//     createdAt: {
       
-        type: Date,
-        default: Date.now
-    },
+//         type: Date,
+//         default: Date.now
+//     },
     
-})
+// })
 
 
-const job = mongoose.model("Jobs", jobs);
-module.exports = job;
+// const job = mongoose.model("Jobs", jobs);
+// module.exports = job;

@@ -142,31 +142,68 @@ async function home(e) {
 
 // ----------------------------- PostJob started ----------------------------
 
-var company = document.getElementById("company").value;
-var fName = document.getElementById("fName").value;
-var lName = document.getElementById("lName").value;
-var number = document.getElementById("number").value;
-
 
 async function conti(e) {
+
+    e.preventDefault();
+
+    let company = document.getElementById("company").value;
+    let fName = document.getElementById("fName").value;
+    let lName = document.getElementById("lName").value;
+    let number = document.getElementById("number").value;
+    let jobTilte = document.getElementById("tilte").value;
+    let jobLocation = document.getElementById("jobLocation").value;
+    let jobType = document.getElementById("jobType").value;
+    let jobPay = document.getElementById("jobPay").value;
+    let city = document.getElementById("city").value;
+    let experience = document.getElementById("experience").value;
+    let skills = document.getElementById("skills").value;
+    let appliMethod = document.getElementById("appliMethod").value;
+    let expiry = document.getElementById("expiry").value;
+    let description = document.getElementById("description").value;
 
 
     try {
 
-        var company = document.getElementById("company").value;
-        var fName = document.getElementById("fName").value;
-        var lName = document.getElementById("lName").value;
-        var number = document.getElementById("number").value;
-        e.preventDefault();
+        console.log(company,
+            fName,
+            lName,
+            number,
+            jobTilte,
+            jobLocation,
+            jobType,
+            jobPay,
+            city,
+            experience,
+            skills,
+            appliMethod,
+            expiry,
+            description);
 
 
-        if (company === '' || fName === '' || lName === '' || number === '') {
+
+
+        if (company === "" ||
+            fName === "" ||
+            lName === "" ||
+            number === "" ||
+            jobTilte === "" ||
+            jobLocation === "" ||
+            jobType === "" ||
+            jobPay === "" ||
+            city === "" ||
+            experience === "" ||
+            skills === "" ||
+            appliMethod === "" ||
+            expiry === "" ||
+            description === "") {
 
 
             alert("⚠️ Please fill in all fields before submitting!");
             return;
 
         }
+
 
 
         if (number.length <= 7 || number.length > 15) {
@@ -183,6 +220,16 @@ async function conti(e) {
                 fName,
                 lName,
                 number,
+                jobTilte,
+                jobLocation,
+                jobType,
+                jobPay,
+                city,
+                experience,
+                skills,
+                appliMethod,
+                expiry,
+                description
             }
         );
 
@@ -191,7 +238,8 @@ async function conti(e) {
 
         if (res.status === 200) {
 
-            window.location.href = "addJob.html";
+            window.location.href = "home.html";
+            // alert("Working successfuly")
         }
 
 
@@ -207,170 +255,167 @@ async function conti(e) {
 // ----------------------------- PostJob ended ----------------------------
 
 
-// ----------------------------- AddJob started ----------------------------
-
-var jobTilte = document.getElementById("tilte").value;
-var jobLocation = document.getElementById("jobLocation").value;
-var jobTimeline = document.getElementById("jobTimeline").value;
-var jobType = document.getElementById("jobType").value;
-var jobPay = document.getElementById("jobPay").value;
-var quantityInput = document.getElementById("quantityInput").value;
-var description = document.getElementById("description").value;
+// // ----------------------------- AddJob started ----------------------------
 
 
-async function addJobConfirm(e) {
+// async function addJobConfirm(e) {
 
-    try {
-        e.preventDefault();
-
-
-        let jobTilte = document.getElementById("tilte").value;
-        let jobLocation = document.getElementById("jobLocation").value;
-        let jobTimeline = document.getElementById("jobTimeline").value;
-        let jobType = document.getElementById("jobType").value;
-        let jobPay = document.getElementById("jobPay").value;
-        let quantityInput = document.getElementById("quantityInput").value;
-        let description = document.getElementById("description").value;
-
-        if (jobTilte === '' || jobLocation === '' || jobTimeline === '' || jobType === '' || jobPay === '' || description === '') {
+//     try {
+//         e.preventDefault();
 
 
-            alert("⚠️ Please fill in all fields before submitting!");
-            return;
-        }
+//         let jobTilte = document.getElementById("tilte").value;
+//         let jobLocation = document.getElementById("jobLocation").value;
+//         let jobTimeline = document.getElementById("jobTimeline").value;
+//         let jobType = document.getElementById("jobType").value;
+//         let jobPay = document.getElementById("jobPay").value;
+//         let quantityInput = document.getElementById("quantityInput").value;
+//         let description = document.getElementById("description").value;
 
-        if (jobLocation === 'Select' || jobTimeline === 'selectTime' || jobType === 'selectType' || quantityInput === "0" || jobPay === 'selectPay') {
+//         if (jobTilte === '' || jobLocation === '' || jobTimeline === '' || jobType === '' || jobPay === '' || description === '') {
 
 
-            alert("!Please select an option");
-            return;
-        }
+//             alert("⚠️ Please fill in all fields before submitting!");
+//             return;
+//         }
+
+//         if (jobLocation === 'Select' || jobTimeline === 'selectTime' || jobType === 'selectType' || quantityInput === "0" || jobPay === 'selectPay') {
+
+
+//             alert("!Please select an option");
+//             return;
+//         }
 
 
 
-        const res = await axios.post("http://localhost:3000/api/jobData",
+//         const res = await axios.post("http://localhost:3000/api/jobData",
 
-            {
-                jobTilte,
-                jobLocation,
-                jobTimeline,
-                jobType,
-                quantityInput,
-                jobPay,
-                description
-            }
-        );
-
-
-        if (res.status === 200) {
-
-            window.location.href = "home.html"
-        }
+//             {
+//                 jobTilte,
+//                 jobLocation,
+//                 jobTimeline,
+//                 jobType,
+//                 quantityInput,
+//                 jobPay,
+//                 description
+//             }
+//         );
 
 
-    }
-    catch (err) {
+//         if (res.status === 200) {
 
-        console.log(err);
-        alert("Not working")
-
-    }
+//             window.location.href = "home.html"
+//         }
 
 
-}
+//     }
+//     catch (err) {
 
-let plus = document.getElementById("plus");
-let minus = document.getElementById("minus");
+//         console.log(err);
+//         alert("Not working")
 
-plus.addEventListener("click", () => {
-
-    let currentValue = parseInt(quantityInput.value)
-
-    if (!isNaN(currentValue)) {
-
-        quantityInput.value = currentValue + 1
-    }
-
-});
-
-minus.addEventListener("click", () => {
-
-    let currentValue = parseInt(quantityInput.value)
-
-    if (!isNaN(currentValue) && currentValue > parseInt(quantityInput.min)) {
-
-        quantityInput.value = currentValue - 1
-    }
-
-});
+//     }
 
 
-function addJob(e) {
+// }
 
-    e.preventDefault();
+// let plus = document.getElementById("plus");
+// let minus = document.getElementById("minus");
 
-    window.location.href = "postJob.html"
-}
-// ----------------------------- AddJob ended ----------------------------
+// plus.addEventListener("click", () => {
+
+//     let currentValue = parseInt(quantityInput.value)
+
+//     if (!isNaN(currentValue)) {
+
+//         quantityInput.value = currentValue + 1
+//     }
+
+// });
+
+// minus.addEventListener("click", () => {
+
+//     let currentValue = parseInt(quantityInput.value)
+
+//     if (!isNaN(currentValue) && currentValue > parseInt(quantityInput.min)) {
+
+//         quantityInput.value = currentValue - 1
+//     }
+
+// });
+
+
+// function addJob(e) {
+
+//     e.preventDefault();
+
+//     window.location.href = "postJob.html"
+// }
+// // ----------------------------- AddJob ended ----------------------------
 
 
 // ----------------------------- Find Job started ----------------------------
-
-async function jobFinder(e) {
-
-    e.preventDefault();
-
-    try {
-
-        let findJob = document.getElementById("findJob");
-
-
-
-        // console.log(token);
-
-
-        const res1 = await axios.get("http://localhost:3000/api/companiesData",
-
+let jobPay = document.getElementById("jobPay");
+let fName = document.getElementById("fName").value;
+let lName = document.getElementById("lName").value;
+let number = document.getElementById("number").value;
+let city = document.getElementById("city").value;
+let experience = document.getElementById("experience").value;
+let skills = document.getElementById("skills").value;
+let appliMethod = document.getElementById("appliMethod").value;
+let expiry = document.getElementById("expiry").value;
+let description = document.getElementById("description").value;
+// async function call() {
+    //     try {
+        
+    //     }
+    //     catch (err) {
+        //         console.log(err);
+        
+        //     }
+        // }
+        // call()
+        
+        
+        async function jobFinder(e) {
+            
+            
+            e.preventDefault();
+            
+            try {
+                
+                let company = document.getElementById("company");
+                let jobTilte = document.getElementById("tilte");
+                let jobType = document.getElementById("jobType");
+                let jobLocation = document.getElementById("jobLocation");
+                let findJob = document.getElementById("findJob");
+                
+                const res = await axios.get("http://localhost:3000/api/companiesData",
+                    
             {
                 company,
-                fName,
-                lName,
-                number
+                jobTilte,
+                jobLocation,
+                jobPay,
+                jobType
             }
 
         );
 
+        let response = res.data.data
+        if (response) {
 
-        const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
-
-            { jobLocation },
-        );
-
-        const response1 = res1.data.data;
-        const response2 = res2.data.jobPost;
+            console.log(response);
+            for (let i = 0; i < response.length; i++) {
 
 
-        const values = Math.min(response1.length, response2.length);
-
-        if (values) {
-
-            console.log(values);
-            for (let i = 0; i < values; i++) {
-
-
-                findJob.innerHTML += `<div class="container_1">
-
-                    <div class="parent_1" onclick="newJobData()">
-
-                        <div class="child_1">
-                            <h1 id="findJob_head">${response1[i].company}</h1>
-                        </div>
-
-                        <div class="child_2">
-                            <p id="findJob_paraOne">${response1[i].fName + " " + response1[i].lName}</p>
-                            <p id="findJob_paraTwo">${response2[i].jobLocation}</p>
-                        </div>
-
+                findJob.innerHTML += `<div class="job-list containerCont">
+                    <h1>Jobs</h1>
+                    <div class="job-card" onclick="showJobDetail('1')">
+                        <h3 class="company-name">${response[i].company}</h3>
+                        <p class="job-title">${response[i].jobTilte}</p>
+                        <p class="job-location">${response[i].jobLocation}, ${response[i].jobType}</p>
+                        <p class="job-salary">${response[i].jobPay}</p>
                     </div>
 
                 </div>`
@@ -388,6 +433,8 @@ async function jobFinder(e) {
 
 
 // ----------------------------- new Job Data started ----------------------------
+
+
 function newJobData() {
 
     window.location.href = "newJobData.html"
@@ -411,38 +458,38 @@ async function newJobDetais(e) {
 
     try {
 
-        let title = document.getElementById("newJobHead");
-        let location = document.getElementById("newJobLocation");
-        let location2 = document.getElementById("newJobLocation2");
-        let pay1 = document.getElementById("newJobSalary1");
-        let pay = document.getElementById("newJobPayment");
-        let typejob = document.getElementById("newJobType");
-        let descrip = document.getElementById("newJobDesPara");
+        // let title = document.getElementById("newJobHead");
+        // let location = document.getElementById("newJobLocation");
+        // let location2 = document.getElementById("newJobLocation2");
+        // let pay1 = document.getElementById("newJobSalary1");
+        // let pay = document.getElementById("newJobPayment");
+        // let typejob = document.getElementById("newJobType");
+        // let descrip = document.getElementById("newJobDesPara");
 
 
-        const res1 = await axios.get("http://localhost:3000/api/companiesData",
+        // const res1 = await axios.get("http://localhost:3000/api/companiesData",
 
-            {
-                company,
-                fName,
-                lName,
-                number
-            }
-        );
+        //     {
+        //         company,
+        //         fName,
+        //         lName,
+        //         number
+        //     }
+        // );
 
-        const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
+        // const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
 
-            {
-                jobTilte,
-                jobLocation,
-                jobTimeline,
-                jobType,
-                jobPay,
-                quantityInput,
-                description
-            }
+        //     {
+        //         jobTilte,
+        //         jobLocation,
+        //         jobTimeline,
+        //         jobType,
+        //         jobPay,
+        //         quantityInput,
+        //         description
+        //     }
 
-        );
+        // );
 
         const data1 = res1.data.data;
         const data2 = res2.data.jobPost;
@@ -527,7 +574,7 @@ async function resume() {
         document.querySelector(".checkResult").style.display = "block";
 
         let data = res.data.aiAnalysis;
-        let clean = data.replace(/```json|```/g, "").trim();
+        let clean = data.replace(/```json | ```/g, "").trim();
         let parsed = JSON.parse(clean);
 
         console.log(parsed);
@@ -678,28 +725,28 @@ async function getDashboardData(e) {
 
         const res = await axios.get("http://localhost:3000/api/dashboard");
 
-        const res2 = await axios.get("http://localhost:3000/api/companiesData",
+        // const res2 = await axios.get("http://localhost:3000/api/companiesData",
 
-            {
-                company,
-                fName,
-                lName,
-                number
-            }
-        );
+        //     {
+        //         company,
+        //         fName,
+        //         lName,
+        //         number
+        //     }
+        // );
 
-        const res3 = await axios.get("http://localhost:3000/api/jobDataPost",
+        // const res3 = await axios.get("http://localhost:3000/api/jobDataPost",
 
-            {
-                jobTilte,
-                jobLocation,
-                jobTimeline,
-                jobType,
-                jobPay,
-                quantityInput,
-                description
-            }
-        );
+        //     {
+        //         jobTilte,
+        //         jobLocation,
+        //         jobTimeline,
+        //         jobType,
+        //         jobPay,
+        //         quantityInput,
+        //         description
+        //     }
+        // );
 
         if (values) {
 
@@ -707,22 +754,22 @@ async function getDashboardData(e) {
             for (let i = 0; i < values; i++) {
 
 
-                findJob.innerHTML += `<div class="container_1">
-    
+                findJob.innerHTML += `< div class="container_1" >
+
                     <div class="parent_1" onclick="newJobData()">
-    
+
                         <div class="child_1">
                             <h1 id="findJob_head">${response1[i].company}</h1>
                         </div>
-    
+
                         <div class="child_2">
                             <p id="findJob_paraOne">${response1[i].fName + " " + response1[i].lName}</p>
                             <p id="findJob_paraTwo">${response2[i].jobLocation}</p>
                         </div>
-    
+
                     </div>
     
-                </div>`
+                </ > `
 
             }
         }
