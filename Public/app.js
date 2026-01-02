@@ -366,32 +366,32 @@ let appliMethod = document.getElementById("appliMethod").value;
 let expiry = document.getElementById("expiry").value;
 let description = document.getElementById("description").value;
 // async function call() {
-    //     try {
-        
-    //     }
-    //     catch (err) {
-        //         console.log(err);
-        
-        //     }
-        // }
-        // call()
-        
-        
-        async function jobFinder(e) {
-            
-            
-            e.preventDefault();
-            
-            try {
-                
-                let company = document.getElementById("company");
-                let jobTilte = document.getElementById("tilte");
-                let jobType = document.getElementById("jobType");
-                let jobLocation = document.getElementById("jobLocation");
-                let findJob = document.getElementById("findJob");
-                
-                const res = await axios.get("http://localhost:3000/api/companiesData",
-                    
+//     try {
+
+//     }
+//     catch (err) {
+//         console.log(err);
+
+//     }
+// }
+// call()
+
+
+async function jobFinder(e) {
+
+
+    e.preventDefault();
+
+    try {
+
+        let company = document.getElementById("company");
+        let jobTilte = document.getElementById("tilte");
+        let jobType = document.getElementById("jobType");
+        let jobLocation = document.getElementById("jobLocation");
+        let findJob = document.getElementById("findJob");
+
+        const res = await axios.get("http://localhost:3000/api/companiesData",
+
             {
                 company,
                 jobTilte,
@@ -409,9 +409,9 @@ let description = document.getElementById("description").value;
             for (let i = 0; i < response.length; i++) {
 
 
-                findJob.innerHTML += `<div class="job-list containerCont">
-                    <h1>Jobs</h1>
-                    <div class="job-card" onclick="showJobDetail('1')">
+                findJob.innerHTML += `
+                <div class="job-list containerCont">
+                    <div class="job-card" onclick="showJobDetail(event)">
                         <h3 class="company-name">${response[i].company}</h3>
                         <p class="job-title">${response[i].jobTilte}</p>
                         <p class="job-location">${response[i].jobLocation}, ${response[i].jobType}</p>
@@ -428,6 +428,11 @@ let description = document.getElementById("description").value;
     }
 }
 
+
+window.addEventListener("click", function showJobDetail(){
+    console.log('addengwwork');
+    
+})
 
 // ----------------------------- Find Job ended ----------------------------
 
