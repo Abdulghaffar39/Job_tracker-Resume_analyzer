@@ -405,13 +405,14 @@ async function jobFinder(e) {
         let response = res.data.data
         if (response) {
 
+            findJob.innerHTML = ""
             console.log(response);
             for (let i = 0; i < response.length; i++) {
 
 
                 findJob.innerHTML += `
                 <div class="job-list containerCont">
-                    <div class="job-card" onclick="showJobDetail(event)">
+                    <div class="job-card" onclick="showJobDetail(${i}, '${response[i].company}', '${response[i].jobTilte}', '${response[i].jobLocation}', '${response[i].jobType}', '${response[i].jobPay}')">
                         <h3 class="company-name">${response[i].company}</h3>
                         <p class="job-title">${response[i].jobTilte}</p>
                         <p class="job-location">${response[i].jobLocation}, ${response[i].jobType}</p>
@@ -428,10 +429,36 @@ async function jobFinder(e) {
     }
 }
 
+function showJobDetail(index, company, jobTitle, jobLocation, jobType, jobPay) {
+    // Job details ko URL parameters mein pass karenge
+    const url = `jobDetailPage.html?company=${encodeURIComponent(company)}&jobTitle=${encodeURIComponent(jobTitle)}&jobLocation=${encodeURIComponent(jobLocation)}&jobType=${encodeURIComponent(jobType)}&jobPay=${encodeURIComponent(jobPay)}`;
 
-window.addEventListener("click", function showJobDetail(){
+    // Naye page pe redirect karenge
+    window.location.href = "newJobData.html";
+}
+
+window.onload = function () {
+    // URL se query parameters ko fetch karna
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const company = urlParams.get('company');
+    const jobTitle = urlParams.get('jobTitle');
+    const jobLocation = urlParams.get('jobLocation');
+    const jobType = urlParams.get('jobType');
+    const jobPay = urlParams.get('jobPay');
+
+    // Data ko page par display karna
+    document.getElementById('company-name').innerText = company;
+    document.getElementById('job-title').innerText = jobTitle;
+    document.getElementById('job-location').innerText = `${jobLocation}, ${jobType}`;
+    document.getElementById('job-salary').innerText = jobPay;
+}
+
+
+
+window.addEventListener("click", function showJobDetail() {
     console.log('addengwwork');
-    
+
 })
 
 // ----------------------------- Find Job ended ----------------------------
