@@ -355,16 +355,6 @@ async function conti(e) {
 
 
 // ----------------------------- Find Job started ----------------------------
-let jobPay = document.getElementById("jobPay");
-let fName = document.getElementById("fName").value;
-let lName = document.getElementById("lName").value;
-let number = document.getElementById("number").value;
-let city = document.getElementById("city").value;
-let experience = document.getElementById("experience").value;
-let skills = document.getElementById("skills").value;
-let appliMethod = document.getElementById("appliMethod").value;
-let expiry = document.getElementById("expiry").value;
-let description = document.getElementById("description").value;
 // async function call() {
 //     try {
 
@@ -376,18 +366,28 @@ let description = document.getElementById("description").value;
 // }
 // call()
 
+let company = document.getElementById("company");
+let jobTilte = document.getElementById("tilte");
+let jobType = document.getElementById("jobType");
+let jobLocation = document.getElementById("jobLocation");
+let jobPay = document.getElementById("jobPay");
+let fName = document.getElementById("fName");
+let lName = document.getElementById("lName");
+let number = document.getElementById("number");
+let city = document.getElementById("city");
+let experience = document.getElementById("experience");
+let skills = document.getElementById("skills");
+let appliMethod = document.getElementById("appliMethod");
+let expiry = document.getElementById("expiry");
+let description = document.getElementById("description");
 
 async function jobFinder(e) {
-
-
+    
+    
     e.preventDefault();
-
+    
     try {
-
-        let company = document.getElementById("company");
-        let jobTilte = document.getElementById("tilte");
-        let jobType = document.getElementById("jobType");
-        let jobLocation = document.getElementById("jobLocation");
+        
         let findJob = document.getElementById("findJob");
 
         const res = await axios.get("http://localhost:3000/api/companiesData",
@@ -397,7 +397,16 @@ async function jobFinder(e) {
                 jobTilte,
                 jobLocation,
                 jobPay,
-                jobType
+                jobType,
+                fName,
+                lName,
+                number,
+                city,
+                experience,
+                skills,
+                appliMethod,
+                expiry,
+                description
             }
 
         );
@@ -412,7 +421,9 @@ async function jobFinder(e) {
 
                 findJob.innerHTML += `
                 <div class="job-list containerCont">
-                    <div class="job-card" onclick="showJobDetail(${i}, '${response[i].company}', '${response[i].jobTilte}', '${response[i].jobLocation}', '${response[i].jobType}', '${response[i].jobPay}')">
+                    <div class="job-card" onclick="showJobDetail()
+                    ">
+
                         <h3 class="company-name">${response[i].company}</h3>
                         <p class="job-title">${response[i].jobTilte}</p>
                         <p class="job-location">${response[i].jobLocation}, ${response[i].jobType}</p>
@@ -429,15 +440,15 @@ async function jobFinder(e) {
     }
 }
 
-function showJobDetail(index, company, jobTitle, jobLocation, jobType, jobPay) {
-    // Job details ko URL parameters mein pass karenge
-    const url = `jobDetailPage.html?company=${encodeURIComponent(company)}&jobTitle=${encodeURIComponent(jobTitle)}&jobLocation=${encodeURIComponent(jobLocation)}&jobType=${encodeURIComponent(jobType)}&jobPay=${encodeURIComponent(jobPay)}`;
+function showJobDetail() {
 
-    // Naye page pe redirect karenge
-    window.location.href = "newJobData.html";
+    console.log('function runing');
+
+
+    // window.location.href = "newJobData.html";
 }
 
-window.onload = function () {
+async function newJobDetais() {
     // URL se query parameters ko fetch karna
     const urlParams = new URLSearchParams(window.location.search);
 
@@ -453,13 +464,6 @@ window.onload = function () {
     document.getElementById('job-location').innerText = `${jobLocation}, ${jobType}`;
     document.getElementById('job-salary').innerText = jobPay;
 }
-
-
-
-window.addEventListener("click", function showJobDetail() {
-    console.log('addengwwork');
-
-})
 
 // ----------------------------- Find Job ended ----------------------------
 
@@ -484,75 +488,75 @@ function backFile(e) {
 
 
 // ----------------------------- new Job Detais started ----------------------------
-async function newJobDetais(e) {
+// async function newJobDetais(e) {
 
-    e.preventDefault()
+//     e.preventDefault()
 
-    try {
+//     try {
 
-        // let title = document.getElementById("newJobHead");
-        // let location = document.getElementById("newJobLocation");
-        // let location2 = document.getElementById("newJobLocation2");
-        // let pay1 = document.getElementById("newJobSalary1");
-        // let pay = document.getElementById("newJobPayment");
-        // let typejob = document.getElementById("newJobType");
-        // let descrip = document.getElementById("newJobDesPara");
-
-
-        // const res1 = await axios.get("http://localhost:3000/api/companiesData",
-
-        //     {
-        //         company,
-        //         fName,
-        //         lName,
-        //         number
-        //     }
-        // );
-
-        // const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
-
-        //     {
-        //         jobTilte,
-        //         jobLocation,
-        //         jobTimeline,
-        //         jobType,
-        //         jobPay,
-        //         quantityInput,
-        //         description
-        //     }
-
-        // );
-
-        const data1 = res1.data.data;
-        const data2 = res2.data.jobPost;
-        console.log(data1, data2);
+//         // let title = document.getElementById("newJobHead");
+//         // let location = document.getElementById("newJobLocation");
+//         // let location2 = document.getElementById("newJobLocation2");
+//         // let pay1 = document.getElementById("newJobSalary1");
+//         // let pay = document.getElementById("newJobPayment");
+//         // let typejob = document.getElementById("newJobType");
+//         // let descrip = document.getElementById("newJobDesPara");
 
 
+//         // const res1 = await axios.get("http://localhost:3000/api/companiesData",
 
-        const values = Math.min(data1.length, data2.length);
+//         //     {
+//         //         company,
+//         //         fName,
+//         //         lName,
+//         //         number
+//         //     }
+//         // );
 
-        if (values) {
+//         // const res2 = await axios.get("http://localhost:3000/api/jobDataPost",
 
-            for (let i = 0; i < values; i++) {
+//         //     {
+//         //         jobTilte,
+//         //         jobLocation,
+//         //         jobTimeline,
+//         //         jobType,
+//         //         jobPay,
+//         //         quantityInput,
+//         //         description
+//         //     }
 
-                title.innerHTML = data2[i].jobTilte;
-                location.innerHTML = data2[i].jobLocation;
-                location2.innerHTML = data2[i].jobLocation;
-                pay1.innerHTML = data2[i].jobPay;
-                pay.innerHTML = data2[i].jobPay;
-                typejob.innerHTML = data2[i].jobType;
-                descrip.innerHTML = data2[i].description;
+//         // );
 
-            }
-        }
+//         const data1 = res1.data.data;
+//         const data2 = res2.data.jobPost;
+//         console.log(data1, data2);
 
-    }
-    catch (err) {
 
-        console.log("Error:", err);
-    }
 
-}
+//         const values = Math.min(data1.length, data2.length);
+
+//         if (values) {
+
+//             for (let i = 0; i < values; i++) {
+
+//                 title.innerHTML = data2[i].jobTilte;
+//                 location.innerHTML = data2[i].jobLocation;
+//                 location2.innerHTML = data2[i].jobLocation;
+//                 pay1.innerHTML = data2[i].jobPay;
+//                 pay.innerHTML = data2[i].jobPay;
+//                 typejob.innerHTML = data2[i].jobType;
+//                 descrip.innerHTML = data2[i].description;
+
+//             }
+//         }
+
+//     }
+//     catch (err) {
+
+//         console.log("Error:", err);
+//     }
+
+// }
 // ----------------------------- new Job Detais ended ----------------------------
 
 
