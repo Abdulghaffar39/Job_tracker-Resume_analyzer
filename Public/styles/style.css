@@ -2,7 +2,7 @@
 
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
 }
 
 body {
@@ -55,38 +55,6 @@ body {
 .back-btn:hover {
     background-color: #fff;
     color: #004fcb;
-}
-
-/* ================= RESPONSIVE ================= */
-
-/* Tablet */
-@media (max-width: 768px) {
-    .site-header {
-        height: 70px;
-        padding: 0 20px;
-    }
-
-    .header-left img {
-        height: 42px;
-    }
-
-    .back-btn {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-    .site-header {
-        height: 64px;
-        padding: 0 16px;
-    }
-
-    .back-btn {
-        padding: 6px 14px;
-        font-size: 14px;
-    }
 }
 
 /*  ----------------------------- Sign Up / Log In Started ---------------------------------  */
@@ -383,7 +351,7 @@ body {
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -393,7 +361,7 @@ body {
     background-color: #c3bf73;
     color: #1f1f1f;
     transform: translateY(-3px);
-    box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .job-card .company-name {
@@ -1413,34 +1381,43 @@ textarea:focus {
 
 }
 
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .site-header {
+        height: 70px;
+        padding: 0 20px;
+    }
+
+    .header-left img {
+        height: 42px;
+    }
+
+    .back-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+    .site-header {
+        height: 64px;
+        padding: 0 16px;
+    }
+
+    .back-btn {
+        padding: 6px 14px;
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 425px) {
 
     /* ---------------------------------- index SignUp started ------------------------- */
-
-    /* ---------------------------------- header SignUp started ------------------------- */
-
-    header {
-
-        width: 100%;
-
-        padding: 0px;
-        justify-content: space-around;
-        gap: 0px;
-    }
-
-
-    header .parnet_2 {
-
-        width: 80px;
-        height: 40px;
-    }
-
-    header .parnet_2 button {
-
-        font-size: 14px;
-    }
-
-    /* ---------------------------------- header SignUp started ------------------------- */
 
     .container_1 form {
 

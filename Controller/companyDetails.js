@@ -19,7 +19,9 @@ async function companyDetails(req, res) {
             experience,
             skills,
             appliMethod,
-            expiry, } = req.body;
+            expiry,
+            description,
+        } = req.body;
 
         // const companyUser = {
         //     company,
@@ -51,6 +53,7 @@ async function companyDetails(req, res) {
             skills,
             appliMethod,
             expiry,
+            description,
         }).save();
 
         return res.send({
