@@ -453,15 +453,14 @@ function applyBack(e) {
 
 
 // ----------------------------- resume started ----------------------------
-document.querySelector(".checkResult").style.display = "block";
 
+document.querySelector(".checkResult").style.display = "none";
 async function resume() {
 
     let fileInput = document.getElementById("fileResume");
     let job = JSON.parse(localStorage.getItem("selectedJob"));
-    // let jobDes = JSON.stringify(job)
     console.log(job.description);
-    
+
 
     if (!fileInput.files.length) {
         alert("Please select a PDF file");
@@ -473,11 +472,12 @@ async function resume() {
     formData.append("jobDescription", JSON.stringify(job.description));
 
     try {
+
         const res = await axios.post("http://localhost:3000/api/upload", formData, {
             headers: { "Content-Type": "multipart/form-data" },
         });
 
-        document.querySelector(".checkResult").style.display = "block";
+        document.getElementById("checkResult").style.display = "block";
 
         let data = res.data.aiAnalysis;
         let clean = data.replace(/```json|```/g, "").trim();

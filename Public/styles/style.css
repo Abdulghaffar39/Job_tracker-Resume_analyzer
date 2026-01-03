@@ -461,276 +461,251 @@ body {
 
 /* ---------------------------------- resume started ------------------------- */
 
+/* ================= UPLOAD SECTION ================= */
+
 .resume {
-
     width: 100%;
-    height: 100%;
-
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .resume .container_1 {
-
     width: 70%;
-    height: 100%;
-    color: black;
-    margin: 30px auto;
-    padding: 60px 0px;
-    border-radius: 16px;
-    background-color: rgb(245, 243, 243);
+    margin: 20px auto;
+    max-width: 900px;
+    background: white;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    gap: 50px;
+    gap: 40px;
 }
 
-.resume .container_1 .title_1 {
-
-    font-size: 32px;
+.resume .title_1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #222;
 }
 
-.resume .container_1 .parent_1 {
+/* ================= FILE UPLOAD ================= */
 
-    width: 90%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-
-.file {
+.resume .parent_1 {
 
     width: 100%;
-    height: 150px;
-    cursor: pointer;
-    border-radius: 10px;
-    background-color: #c3bf73;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
-.file i,
-.file span {
-
-    font-size: 25px;
-}
-
-.file input[type="file"] {
-    display: none;
+.file {
+    width: 100%;
+    height: 180px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
 }
 
 .file label {
-
     width: 100%;
     height: 100%;
-    border-radius: 10px;
-    border: 3px dashed #625e22;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-
-}
-
-.file label:hover {
-
-    font-size: 22px !important;
-    transition: 0.4s all;
-    background-color: #d9d69d;
-    border: 3px dashed #060606;
-    box-shadow: 4px 4px 4px black;
-}
-
-.description {
-
-    width: 100%;
-    height: 100%;
-}
-
-.description textarea {
-
-    width: 100%;
-    height: 100%;
-    outline: none;
-    font-size: 18px;
-    border-radius: 10px;
-    padding: 10px 20px;
-    border: 1px solid black;
-    background-color: rgb(255, 255, 255);
-}
-
-.description textarea:hover {
-
-    transition: 0.6s all;
-    background-color: rgb(237, 237, 237);
-}
-
-.buttonBox {
-
-    width: 100%;
-    height: 60px;
-    border: none;
-    border-radius: 10px;
-    background-color: black;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.buttonBox button {
-
-    width: 100%;
-    height: 100%;
-
-    border: none;
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
-    border-radius: 10px;
-    transition: 0.8s all;
-    background-color: rgb(16, 16, 16);
-
-}
-
-.buttonBox button:hover {
-
-    color: black;
-    border: 1px solid black;
-    background-color: rgb(251, 249, 249);
-}
-
-
-.checkResult {
-
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    color: black;
-}
-
-.checkResult .container_1 {
-
-    width: 90%;
-    height: 100%;
-    margin: 30px auto;
-    color: black;
+    border-radius: 16px;
+    border: 2px dashed #555;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 10px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-.checkResult .parent_1 {
+.file i {
+    font-size: 40px;
+    color: #000;
+}
 
+.file span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.file label:hover {
+    background: #000;
+    color: white;
+    border-color: #000;
+}
+
+.file label:hover i {
+    color: white;
+}
+
+.file input {
+    display: none;
+}
+
+/* ================= BUTTON ================= */
+
+.buttonBox {
     width: 100%;
-    height: 80px;
-    color: black;
+}
 
+.buttonBox button {
+    width: 100%;
+    height: 55px;
+    border-radius: 14px;
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #000000, #434343);
+    transition: 0.3s ease;
+}
+
+.buttonBox button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ================= RESULT SECTION ================= */
+
+.checkResult {
+    width: 100%;
+    min-height: 100vh;
+    background: #f4f6f8;
+    padding: 60px 0;
+}
+
+.checkResult .container_1 {
+    width: 85%;
+    max-width: 1200px;
+    margin: auto;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* ================= SCORES ================= */
+
+.checkResult .parent_1 {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 30px;
+    border-radius: 18px;
+    color: white;
+    background: linear-gradient(135deg, #000000, #434343);
 }
 
 .checkResult .parent_1 h1 {
-
-    font-size: 30px;
-
-    display: flex;
-    gap: 20px;
+    font-size: 28px;
+    color: white;
 }
+
+/* ================= SKILLS ================= */
 
 .checkResult .parent_2,
 .checkResult .parent_3,
 .checkResult .parent_4 {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
 
-    width: 100%;
-    color: black;
+.checkResult .parent_2>div {
+    display: flex;
+    gap: 30px;
+}
+
+.checkResult .child_1 {
+    width: 50%;
+}
+
+.checkResult h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.checkResult ul {
+    list-style: disc inside;
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 12px;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: start;
     gap: 10px;
 }
 
-.checkResult .parent_2 div {
-
-    width: 100%;
-    color: black;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: start;
-    gap: 10px;
+.checkResult ul li {
+    font-size: 15px;
 }
 
-.checkResult .parent_2 div div {
+/* ================= TEXT BOXES ================= */
 
-    display: flex;
-    flex-direction: column;
+#suggestionsContainer div,
+#resumeContainer div {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
-.checkResult .parent_2 h3,
-.checkResult .parent_3 h3,
-.checkResult .parent_4 h3 {
-
-    font-size: 28px;
-}
-
-.checkResult .parent_2 ul {
-
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    list-style-position: inside;
-    background-color: rgb(198, 198, 198);
-
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.checkResult .parent_2 ul li,
-.checkResult .parent_3 div div,
-.checkResult .parent_4 div div {
-
-    font-size: 14px;
-}
-
-.checkResult .parent_3 div div,
-.checkResult .parent_4 div div {
-
-    background-color: rgb(198, 198, 198);
-}
+/* ================= FINAL BUTTON ================= */
 
 .checkResult .parent_5 {
-
-    width: 180px;
-    height: 45px;
-
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .checkResult .parent_5 button {
-
-    width: 100%;
-    height: 100%;
-    color: white;
+    width: 240px;
+    height: 55px;
     font-size: 18px;
-    border-style: none;
-    border-radius: 8px;
-    background-color: black;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #000000, #434343);
+    transition: 0.3s ease;
 }
 
+.checkResult .parent_5 button:hover {
+    transform: scale(1.05);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .resume .container_1 {
+        width: 90%;
+        padding: 40px 20px;
+    }
+
+    .checkResult .parent_1 {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .checkResult .parent_2>div {
+        flex-direction: column;
+    }
+
+    .checkResult .child_1 {
+        width: 100%;
+    }
+}
 
 /* ---------------------------------- resume ended ------------------------- */
 
@@ -1147,6 +1122,7 @@ body {
 
 /* FORM */
 .postJob {
+
     background: #f8fafc;
     padding: 40px 20px;
 
@@ -1178,6 +1154,9 @@ h2 {
 }
 
 .group {
+
+    width: 100%;
+
     display: flex;
     flex-direction: column;
     gap: 6px;
